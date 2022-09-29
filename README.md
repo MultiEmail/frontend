@@ -1,10 +1,8 @@
 # Technologies Used
 
-- ExpressJs
-- Mongoose
-- Typegoose
-- TypeScript
-- Passport
+- React
+- Redux
+- Tailwind CSS
 
 # Features
 
