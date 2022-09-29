@@ -17,8 +17,8 @@
 ## Windows
 
 ```
-git clone https://github.com/MultiEmail/MultiEmail-backend.git
-cd MultiEmail-backend
+git clone https://github.com/MultiEmail/MultiEmail-frontend.git
+cd MultiEmail-frontend
 yarn install
 yarn dev
 ```
@@ -26,7 +26,7 @@ yarn dev
 # Linux
 
 ```
-git clone https://github.com/MultiEmail/MultiEmail-backend.git && cd MultiEmail-backend && yarn install && yarn dev
+git clone https://github.com/MultiEmail/MultiEmail-frontend.git && cd MultiEmail-frontend && yarn install && yarn dev
 ```
 
 # Developers/Contributors
