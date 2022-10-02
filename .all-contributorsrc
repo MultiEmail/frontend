@@ -18,6 +18,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "KanLSK",
+      "name": "Kan Halder",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59249490?v=4",
+      "profile": "https://github.com/KanLSK",
+      "contributions": [
+        "code",
+        "design",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
