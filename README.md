@@ -48,7 +48,7 @@ Thanks goes to these wonderful people ❤:
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="https://shriproperty.com/"><img src="https://avatars.githubusercontent.com/u/69336518?v=4?s=70" width="70px;" alt="Ayush Chugh"/><br /><sub><b>Ayush Chugh</b></sub></a><br /><a href="https://github.com/MultiEmail/MultiEmail-frontend/commits?author=aayushchugh" title="Code">💻</a></td>
+      <td align="center"><a href="https://shriproperty.com/"><img src="https://avatars.githubusercontent.com/u/69336518?v=4?s=70" width="70px;" alt="Ayush Chugh"/><br /><sub><b>Ayush Chugh</b></sub></a><br /><a href="https://github.com/MultiEmail/MultiEmail-frontend/commits?author=aayushchugh" title="Code">💻</a> <a href="https://github.com/MultiEmail/MultiEmail-frontend/pulls?q=is%3Apr+reviewed-by%3Aaayushchugh" title="Reviewed Pull Requests">👀</a> <a href="#projectManagement-aayushchugh" title="Project Management">📆</a></td>
       <td align="center"><a href="https://github.com/KanLSK"><img src="https://avatars.githubusercontent.com/u/59249490?v=4?s=70" width="70px;" alt="Kan Halder"/><br /><sub><b>Kan Halder</b></sub></a><br /><a href="https://github.com/MultiEmail/MultiEmail-frontend/commits?author=KanLSK" title="Code">💻</a> <a href="#design-KanLSK" title="Design">🎨</a> <a href="https://github.com/MultiEmail/MultiEmail-frontend/pulls?q=is%3Apr+reviewed-by%3AKanLSK" title="Reviewed Pull Requests">👀</a></td>
     </tr>
   </tbody>
