@@ -1,78 +1,87 @@
 {
-	"projectName": "MultiEmail-frontend",
-	"projectOwner": "MultiEmail",
-	"repoType": "github",
-	"repoHost": "https://github.com",
-	"files": [
-		"README.md"
-	],
-	"imageSize": 70,
-	"commit": true,
-	"commitConvention": "eslint",
-	"contributors": [
-		{
-			"login": "aayushchugh",
-			"name": "Ayush Chugh",
-			"avatar_url": "https://avatars.githubusercontent.com/u/69336518?v=4",
-			"profile": "https://shriproperty.com/",
-			"contributions": [
-				"code",
-				"review",
-				"projectManagement"
-			]
-		},
-		{
-			"login": "KanLSK",
-			"name": "Kan Halder",
-			"avatar_url": "https://avatars.githubusercontent.com/u/59249490?v=4",
-			"profile": "https://github.com/KanLSK",
-			"contributions": [
-				"code",
-				"design",
-				"review"
-			]
-		},
-		{
-			"login": "Karol-Ari",
-			"name": "Karol-Ari",
-			"avatar_url": "https://avatars.githubusercontent.com/u/55296886?v=4",
-			"profile": "https://github.com/Karol-Ari",
-			"contributions": [
-				"code",
-				"design",
-				"review"
-			]
-		},
-		{
-			"login": "is-it-ayush",
-			"name": "Ayush",
-			"avatar_url": "https://avatars.githubusercontent.com/u/36449128?v=4",
-			"profile": "https://github.com/is-it-ayush",
-			"contributions": [
-				"code",
-				"review",
-				"mentoring"
-			]
-		},
-		{
-			"login": "CodesWithJames",
-			"name": "James",
-			"avatar_url": "https://avatars.githubusercontent.com/u/71551059?v=4",
-			"profile": "https://www.jamesmesser.xyz/",
-			"contributions": [
-				"financial"
-			]
-		},
-		{
-			"login": "shivamvishwakarm",
-			"name": "shivam vishwakarma",
-			"avatar_url": "https://avatars.githubusercontent.com/u/80755217?v=4",
-			"profile": "https://github.com/shivamvishwakarm",
-			"contributions": [
-				"code"
-			]
-		}
-	],
-	"contributorsPerLine": 7,
-	"linkToUsage": true
+  "projectName": "MultiEmail-frontend",
+  "projectOwner": "MultiEmail",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 70,
+  "commit": true,
+  "commitConvention": "eslint",
+  "contributors": [
+    {
+      "login": "aayushchugh",
+      "name": "Ayush Chugh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/69336518?v=4",
+      "profile": "https://shriproperty.com/",
+      "contributions": [
+        "code",
+        "review",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "KanLSK",
+      "name": "Kan Halder",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59249490?v=4",
+      "profile": "https://github.com/KanLSK",
+      "contributions": [
+        "code",
+        "design",
+        "review"
+      ]
+    },
+    {
+      "login": "Karol-Ari",
+      "name": "Karol-Ari",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55296886?v=4",
+      "profile": "https://github.com/Karol-Ari",
+      "contributions": [
+        "code",
+        "design",
+        "review"
+      ]
+    },
+    {
+      "login": "is-it-ayush",
+      "name": "Ayush",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36449128?v=4",
+      "profile": "https://github.com/is-it-ayush",
+      "contributions": [
+        "code",
+        "review",
+        "mentoring"
+      ]
+    },
+    {
+      "login": "CodesWithJames",
+      "name": "James",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71551059?v=4",
+      "profile": "https://www.jamesmesser.xyz/",
+      "contributions": [
+        "financial"
+      ]
+    },
+    {
+      "login": "shivamvishwakarm",
+      "name": "shivam vishwakarma",
+      "avatar_url": "https://avatars.githubusercontent.com/u/80755217?v=4",
+      "profile": "https://github.com/shivamvishwakarm",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "AndrewFirePvP7",
+      "name": "AndrewDev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29314485?v=4",
+      "profile": "https://github.com/AndrewFirePvP7",
+      "contributions": [
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "linkToUsage": true
 }
