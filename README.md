@@ -1,5 +1,5 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Technologies Used
@@ -53,6 +53,7 @@ Thanks goes to these wonderful people ❤:
       <td align="center"><a href="https://github.com/Karol-Ari"><img src="https://avatars.githubusercontent.com/u/55296886?v=4?s=70" width="70px;" alt="Karol-Ari"/><br /><sub><b>Karol-Ari</b></sub></a><br /><a href="https://github.com/MultiEmail/MultiEmail-frontend/commits?author=Karol-Ari" title="Code">💻</a> <a href="#design-Karol-Ari" title="Design">🎨</a> <a href="https://github.com/MultiEmail/MultiEmail-frontend/pulls?q=is%3Apr+reviewed-by%3AKarol-Ari" title="Reviewed Pull Requests">👀</a></td>
       <td align="center"><a href="https://github.com/is-it-ayush"><img src="https://avatars.githubusercontent.com/u/36449128?v=4?s=70" width="70px;" alt="Ayush"/><br /><sub><b>Ayush</b></sub></a><br /><a href="https://github.com/MultiEmail/MultiEmail-frontend/commits?author=is-it-ayush" title="Code">💻</a> <a href="https://github.com/MultiEmail/MultiEmail-frontend/pulls?q=is%3Apr+reviewed-by%3Ais-it-ayush" title="Reviewed Pull Requests">👀</a> <a href="#mentoring-is-it-ayush" title="Mentoring">🧑‍🏫</a></td>
       <td align="center"><a href="https://github.com/andrewdev"><img src="https://avatars.githubusercontent.com/u/476872?v=4?s=70" width="70px;" alt="AndrewDev"/><br /><sub><b>AndrewDev</b></sub></a><br /><a href="#ideas-andrewdev" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center"><a href="https://www.jamesmesser.xyz/"><img src="https://avatars.githubusercontent.com/u/71551059?v=4?s=70" width="70px;" alt="James"/><br /><sub><b>James</b></sub></a><br /><a href="#financial-CodesWithJames" title="Financial">💵</a></td>
     </tr>
   </tbody>
   <tfoot>

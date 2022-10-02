@@ -62,6 +62,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "CodesWithJames",
+      "name": "James",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71551059?v=4",
+      "profile": "https://www.jamesmesser.xyz/",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
