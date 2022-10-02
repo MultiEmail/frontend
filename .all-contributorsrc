@@ -71,6 +71,15 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "shivamvishwakarm",
+      "name": "shivam vishwakarma",
+      "avatar_url": "https://avatars.githubusercontent.com/u/80755217?v=4",
+      "profile": "https://github.com/shivamvishwakarm",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
