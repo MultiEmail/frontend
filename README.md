@@ -1,5 +1,5 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Technologies Used
@@ -55,6 +55,9 @@ Thanks goes to these wonderful people ❤:
       <td align="center"><a href="https://www.jamesmesser.xyz/"><img src="https://avatars.githubusercontent.com/u/71551059?v=4?s=70" width="70px;" alt="James"/><br /><sub><b>James</b></sub></a><br /><a href="#financial-CodesWithJames" title="Financial">💵</a></td>
       <td align="center"><a href="https://github.com/shivamvishwakarm"><img src="https://avatars.githubusercontent.com/u/80755217?v=4?s=70" width="70px;" alt="shivam vishwakarma"/><br /><sub><b>shivam vishwakarma</b></sub></a><br /><a href="https://github.com/MultiEmail/MultiEmail-frontend/commits?author=shivamvishwakarm" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/AndrewFirePvP7"><img src="https://avatars.githubusercontent.com/u/29314485?v=4?s=70" width="70px;" alt="AndrewDev"/><br /><sub><b>AndrewDev</b></sub></a><br /><a href="#ideas-AndrewFirePvP7" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/samiulbasirfahim"><img src="https://avatars.githubusercontent.com/u/93071892?v=4?s=70" width="70px;" alt="Samiul Basir Fahim"/><br /><sub><b>Samiul Basir Fahim</b></sub></a><br /><a href="https://github.com/MultiEmail/MultiEmail-frontend/commits?author=samiulbasirfahim" title="Documentation">📖</a></td>
     </tr>
   </tbody>
   <tfoot>

@@ -80,6 +80,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "samiulbasirfahim",
+      "name": "Samiul Basir Fahim",
+      "avatar_url": "https://avatars.githubusercontent.com/u/93071892?v=4",
+      "profile": "https://github.com/samiulbasirfahim",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
