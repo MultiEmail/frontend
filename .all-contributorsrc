@@ -53,6 +53,15 @@
         "review",
         "mentoring"
       ]
+    },
+    {
+      "login": "andrewdev",
+      "name": "AndrewDev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/476872?v=4",
+      "profile": "https://github.com/andrewdev",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
