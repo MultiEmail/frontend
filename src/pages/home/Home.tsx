@@ -1,6 +1,7 @@
+import { FC } from "react";
 import sample from "../../assets/photos/product-sample.png";
 
-function Home() {
+const Home: FC = () => {
 	return (
 		<div className="w-screen h-screen grid place-items-center font-poppins">
 			<div className="background"></div>
@@ -12,6 +13,6 @@ function Home() {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Home;
