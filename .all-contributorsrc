@@ -1,5 +1,5 @@
 {
-  "projectName": "MultiEmail-frontend",
+  "projectName": "frontend",
   "projectOwner": "MultiEmail",
   "repoType": "github",
   "repoHost": "https://github.com",
@@ -88,6 +88,15 @@
       "profile": "https://github.com/samiulbasirfahim",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "Kunalpal215",
+      "name": "Kunal Pal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83537208?v=4",
+      "profile": "https://kunalpal215.github.io/",
+      "contributions": [
+        "code"
       ]
     }
   ],
