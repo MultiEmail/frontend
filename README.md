@@ -1,5 +1,5 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Technologies Used
@@ -75,6 +75,7 @@ Thanks goes to these wonderful people ❤:
     <tr>
       <td align="center"><a href="https://github.com/samiulbasirfahim"><img src="https://avatars.githubusercontent.com/u/93071892?v=4?s=70" width="70px;" alt="Samiul Basir Fahim"/><br /><sub><b>Samiul Basir Fahim</b></sub></a><br /><a href="https://github.com/MultiEmail/frontend/commits?author=samiulbasirfahim" title="Documentation">📖</a></td>
       <td align="center"><a href="https://kunalpal215.github.io/"><img src="https://avatars.githubusercontent.com/u/83537208?v=4?s=70" width="70px;" alt="Kunal Pal"/><br /><sub><b>Kunal Pal</b></sub></a><br /><a href="https://github.com/MultiEmail/frontend/commits?author=Kunalpal215" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/KOQ-UTx10101"><img src="https://avatars.githubusercontent.com/u/83289528?v=4?s=70" width="70px;" alt="Utkrisht Singh Chauhan"/><br /><sub><b>Utkrisht Singh Chauhan</b></sub></a><br /><a href="https://github.com/MultiEmail/frontend/commits?author=KOQ-UTx10101" title="Code">💻</a></td>
     </tr>
   </tbody>
   <tfoot>
