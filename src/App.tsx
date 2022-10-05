@@ -6,7 +6,7 @@ import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import Verification from "./pages/verification/Verification";
 import Nav from "./components/nav/Nav";
-
+import NotFound from "./pages/not_found/Not_Found";
 const App = () => {
 	return (
 		<div>
@@ -17,6 +17,7 @@ const App = () => {
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 					<Route path="/verify" element={<Verification />} />
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
