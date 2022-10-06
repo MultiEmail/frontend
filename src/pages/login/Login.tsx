@@ -52,7 +52,6 @@ const Login: FC = () => {
             <input
               type="email"
               id="email"
-              onKeyPress={handleKeyPress}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
@@ -66,7 +65,6 @@ const Login: FC = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              onKeyPress={handleKeyPress}
               className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
               placeholder="password"
             />
