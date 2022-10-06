@@ -17,20 +17,6 @@ const Login: FC = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  //for submit by clicking an enter key
-  const handleKeyPress = (e: any) => {
-    if (e.key === "Enter") {
-      if (email === "" || password === "") {
-        return;
-      } else {
-        console.log({
-          Email: email,
-          Password: password,
-        });
-      }
-    }
-  };
-
   const passwordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
