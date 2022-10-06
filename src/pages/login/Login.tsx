@@ -62,9 +62,10 @@ const Login: FC = () => {
           </div>
           {/*form*/}
           <div className="flex w-[90%] flex-col gap-2 text-[#3F72AF]">
-            <label className="text-[14px]">Email</label>
+            <label htmlFor="email" className="text-[14px]">Email</label>
             <input
               type="email"
+              id="email"
               onKeyPress={handleKeyPress}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -73,9 +74,10 @@ const Login: FC = () => {
             />
           </div>
           <div className="relative flex w-[90%] flex-col gap-2 text-[#3F72AF]">
-            <label className="text-[14px]">Password</label>
+            <label htmlFor="password" className="text-[14px]">Password</label>
             <input
               type={showPassword ? "text" : "password"}
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onKeyPress={handleKeyPress}
