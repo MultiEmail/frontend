@@ -1,4 +1,5 @@
 {
 	"cSpell.words": ["IAPI"],
-	"docwriter.style": "Auto-detect"
+	"docwriter.style": "Auto-detect",
+	"editor.tabSize": 4
 }
