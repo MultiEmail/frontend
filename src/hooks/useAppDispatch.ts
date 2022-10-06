@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { TAppDispatch } from "../types/types";
+import { TAppDispatch } from "../store";
 
 /**
  * use `useAppDispatch` throughout the code instead of `useDispatch`
