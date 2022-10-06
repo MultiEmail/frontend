@@ -45,31 +45,49 @@ const Signup: FC = () => {
 		}
 	};
 
-	/*
-	  TODO: Add validation for following fields
-	- username
-		- required
-		- should not be shorter than 3 characters
-		- should not be longer than 50 characters
-		
-	- email
-		- required
-		- should be a valid email
+  const errors = () => {
+    const errors: Partial<ISignupPayload> = {};
 
-	- password
-		- required
-		- minimum length of 6 characters
+	const { username, email, cpassword, password } = formData;
 
-	- cpassword
-		- required
-		- minimum length of 6 characters
-		- password and cpassword should be same
-	 */
+    if (username.length > 0 && username.length < 3) {
+      errors.username = "Username must be at least 3 characters long";
+    } else if (username.length > 50) {
+      errors.username = "Username must be at most 50 characters long";
+    }
+
+   	if (email.length > 0 &&
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)
+    ) {
+      errors.email = "Invalid email address";
+    }
+
+    if (cpassword.length > 0 && cpassword !== password) {
+      errors.cpassword = "Password and confirm password must be the same";
+	}
+	  
+	if (password.length > 0 && cpassword !== password) {
+      errors.cpassword = "Password and confirm password must be the same";
+    }
+
+    if (cpassword.length > 0 && cpassword.length < 6) {
+      errors.cpassword = "Confirm password must be at least 6 characters long";
+    }
+
+ 	if (password.length > 0 && password.length < 6) {
+      errors.password = "Password must be at least 6 characters long";
+	}
+
+    return errors;
+	};
+	
+	const formInvalid = Object.keys(errors()).length > 0 || Object.values(formData).some(str => str === "")
+
 	return (
 		<main>
 			<form onSubmit={submitHandler}>
 				<div>
-					<label htmlFor="username">Username: </label>
+					<label htmlFor="username">Username (*): </label>
 					<input
 						id="username"
 						type="text"
@@ -78,9 +96,10 @@ const Signup: FC = () => {
 						value={formData.username}
 						onChange={e => updateFormData("username", e.target.value)}
 					/>
+						{errors().username}
 				</div>
 				<div>
-					<label htmlFor="email">Email: </label>
+					<label htmlFor="email">Email (*): </label>
 					<input
 						id="email"
 						type="email"
@@ -89,9 +108,10 @@ const Signup: FC = () => {
 						value={formData.email}
 						onChange={e => updateFormData("email", e.target.value)}
 					/>
+					{errors().email}
 				</div>
 				<div>
-					<label htmlFor="password">Password: </label>
+					<label htmlFor="password">Password (*): </label>
 					<input
 						id="password"
 						type="password"
@@ -100,9 +120,10 @@ const Signup: FC = () => {
 						value={formData.password}
 						onChange={e => updateFormData("password", e.target.value)}
 					/>
+					{errors().password}
 				</div>
 				<div>
-					<label htmlFor="cpassword">Confirm Password: </label>
+					<label htmlFor="cpassword">Confirm Password (*): </label>
 					<input
 						id="cpassword"
 						type="password"
@@ -111,10 +132,12 @@ const Signup: FC = () => {
 						value={formData.cpassword}
 						onChange={e => updateFormData("cpassword", e.target.value)}
 					/>
+					{errors().cpassword}
 				</div>
 
 				<button
 					type="submit"
+					disabled={formInvalid}
 					className="bg-primary text-white py-1 px-2 rounded"
 				>
 					Signup
