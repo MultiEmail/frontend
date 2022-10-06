@@ -68,22 +68,6 @@ const Signup: FC = () => {
     setShowConfirmPassword((prev) => !prev);
   };
 
-  useEffect(() => {
-    //to detect the enter key on the keyboard
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.key === "Enter") {
-		console.log(formData)
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyPress);
-
-    //used for clean up the event listener when the component unmounts
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  });
-
   /*
 	  TODO: Add validation for following fields
 	- username
