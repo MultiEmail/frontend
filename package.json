@@ -51,7 +51,7 @@
 		"@commitlint/cli": "17.1.2",
 		"@commitlint/config-conventional": "17.1.0",
 		"@types/axios": "0.14.0",
-		"all-contributors-cli": "6.23.0",
+		"all-contributors-cli": "6.23.1",
 		"commitlint": "17.1.2",
 		"husky": "8.0.1",
 		"tailwindcss": "3.1.8"
