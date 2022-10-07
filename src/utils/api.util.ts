@@ -1,4 +1,9 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import axios, {
+	AxiosError,
+	AxiosInstance,
+	AxiosRequestConfig,
+	AxiosResponse,
+} from "axios";
 
 /**
  * Use this `API` instead of `axios` for api requests
@@ -28,7 +33,36 @@ API.interceptors.response.use(
 	(res: AxiosResponse) => {
 		return Promise.resolve(res);
 	},
-	(err: AxiosError) => {
+	async (err: AxiosError<IAPIResponseError>) => {
+		interface APIResponse extends IAPIResponseSuccess {
+			access_token: string;
+		}
+
+		const accessToken = localStorage.getItem("access_token");
+		const refreshToken = localStorage.getItem("refresh_token");
+
+		// auto refresh access token if it is expired
+		if (
+			err.response?.status === 403 &&
+			err.response.data.error ===
+				"User is not logged in or access_token is expired" &&
+			accessToken &&
+			refreshToken
+		) {
+			const res = await API.get<APIResponse>("/auth/refresh", {
+				headers: {
+					"x-refresh": refreshToken,
+				},
+			});
+
+			if (res.data.access_token) {
+				localStorage.setItem("access_token", res.data.access_token);
+				// resend the request with new access token
+				const response = await API(err.config as AxiosRequestConfig);
+				return Promise.resolve(response);
+			}
+		}
+
 		const formattedErr = {
 			status: err.response?.status,
 			statusText: err.response?.statusText,
