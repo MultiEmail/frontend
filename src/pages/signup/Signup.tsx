@@ -10,7 +10,7 @@ import logo from "../../assets/logos/icon-transparent.svg";
 import {
 	AiOutlineArrowLeft,
 	AiFillEye,
-	AiFillEyeInvisible,
+	AiFillEyeInvisible
 } from "react-icons/ai";
 /**
  * Signup page
@@ -30,13 +30,14 @@ const Signup: FC = () => {
 		username: "",
 		email: "",
 		password: "",
-		cpassword: "",
+		cpassword: ""
 	});
 
 	const [error, setError] = useState<string>("");
 	const [showPassword, setShowPassword] = useState<boolean>(false);
-	const [showConfirmPassword, setShowConfirmPassword] =
-		useState<boolean>(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(
+		false
+	);
 
 	const updateFormData = useUpdateObjectState<ISignupPayload>(setFormData);
 
@@ -60,12 +61,12 @@ const Signup: FC = () => {
 
 	//show password in input field
 	const passwordVisibility = () => {
-		setShowPassword((prev) => !prev);
+		setShowPassword(prev => !prev);
 	};
 
 	//show confirm password in input field
 	const confirmPasswordVisibility = () => {
-		setShowConfirmPassword((prev) => !prev);
+		setShowConfirmPassword(prev => !prev);
 	};
 
 	/*
@@ -93,10 +94,12 @@ const Signup: FC = () => {
 	 */
 	return (
 		<div className="absolute top-0 left-0 grid h-screen w-screen place-items-center bg-white font-poppins">
-			<div className="relative flex h-auto w-[90vw] max-w-6xl flex-col items-center justify-center gap-4 bg-[#DBE2EF] py-10 md:h-[60vh] md:w-[70vw] md:flex-row md:justify-around">
+			<div className="rounded relative flex h-auto w-[90vw] max-w-6xl flex-col items-center justify-center gap-4 bg-[#DBE2EF] py-10 md:h-[60vh] md:w-[70vw] md:flex-row md:justify-around">
 				{/*icon for redirect to home */}
 				<Link to="/" className="absolute top-2 left-2">
-					<AiOutlineArrowLeft className="text-xl" />
+					<div className="back-arrow rounded bg-primary py-1 px-2 text-white">
+						<AiOutlineArrowLeft className="text-xl" />
+					</div>
 				</Link>
 				{/*logo*/}
 				<div className="flex w-fit items-center gap-1 md:hidden">
@@ -108,7 +111,7 @@ const Signup: FC = () => {
 					<img src={vector} alt="vector" />
 				</div>
 				{/*separate line*/}
-				<div className="h-[1px] w-[95%] rounded-full border-2 border-[#3f71af60] bg-[#6398da60] md:h-[30vh] md:w-[0px]"></div>
+				<div className="h-[1px] w-[95%] rounded-full border-2 border-[#3f71af60] bg-[#6398da60] md:h-[30vh] md:w-[0px]" />
 				<form
 					className="flex w-[90%] flex-col items-center gap-3 md:w-[40%]"
 					onSubmit={submitHandler}
@@ -129,9 +132,8 @@ const Signup: FC = () => {
 							placeholder="multiemail"
 							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
 							value={formData.username}
-							onChange={(e) =>
-								updateFormData("username", e.target.value)
-							}
+							onChange={e =>
+								updateFormData("username", e.target.value)}
 						/>
 					</div>
 					<div className="flex w-[90%] flex-col gap-2 text-[#3F72AF]">
@@ -144,9 +146,8 @@ const Signup: FC = () => {
 							placeholder="info@multiemail.us"
 							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
 							value={formData.email}
-							onChange={(e) =>
-								updateFormData("email", e.target.value)
-							}
+							onChange={e =>
+								updateFormData("email", e.target.value)}
 						/>
 					</div>
 					<div className="relative flex w-[90%] flex-col gap-2 text-[#3F72AF]">
@@ -159,21 +160,18 @@ const Signup: FC = () => {
 							placeholder="strongpassword"
 							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
 							value={formData.password}
-							onChange={(e) =>
-								updateFormData("password", e.target.value)
-							}
+							onChange={e =>
+								updateFormData("password", e.target.value)}
 						/>
-						{showPassword ? (
-							<AiFillEyeInvisible
-								className="absolute right-2 top-[65%] cursor-pointer"
-								onClick={passwordVisibility}
-							/>
-						) : (
-							<AiFillEye
-								className="absolute right-2 top-[65%] cursor-pointer"
-								onClick={passwordVisibility}
-							/>
-						)}
+						{showPassword
+							? <AiFillEyeInvisible
+									className="absolute right-2 top-[65%] cursor-pointer"
+									onClick={passwordVisibility}
+								/>
+							: <AiFillEye
+									className="absolute right-2 top-[65%] cursor-pointer"
+									onClick={passwordVisibility}
+								/>}
 					</div>
 					<div className="relative flex w-[90%] flex-col gap-2 text-[#3F72AF]">
 						<label className="text-[14px]" htmlFor="cpassword">
@@ -185,21 +183,18 @@ const Signup: FC = () => {
 							placeholder="confirm your password"
 							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
 							value={formData.cpassword}
-							onChange={(e) =>
-								updateFormData("cpassword", e.target.value)
-							}
+							onChange={e =>
+								updateFormData("cpassword", e.target.value)}
 						/>
-						{showConfirmPassword ? (
-							<AiFillEyeInvisible
-								className="absolute right-2 top-[65%] cursor-pointer"
-								onClick={confirmPasswordVisibility}
-							/>
-						) : (
-							<AiFillEye
-								className="absolute right-2 top-[65%] cursor-pointer"
-								onClick={confirmPasswordVisibility}
-							/>
-						)}
+						{showConfirmPassword
+							? <AiFillEyeInvisible
+									className="absolute right-2 top-[65%] cursor-pointer"
+									onClick={confirmPasswordVisibility}
+								/>
+							: <AiFillEye
+									className="absolute right-2 top-[65%] cursor-pointer"
+									onClick={confirmPasswordVisibility}
+								/>}
 					</div>
 					<div className="flex items-center gap-2">
 						<input type="checkbox" />

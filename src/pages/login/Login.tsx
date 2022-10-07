@@ -9,7 +9,7 @@ import logo from "../../assets/logos/icon-transparent.svg";
 import {
 	AiOutlineArrowLeft,
 	AiFillEye,
-	AiFillEyeInvisible,
+	AiFillEyeInvisible
 } from "react-icons/ai";
 import { ILoginPayload, loginHandler } from "../../actions/auth.actions";
 import useUpdateObjectState from "../../hooks/useUpdateObjectState";
@@ -27,7 +27,7 @@ const Login: FC = () => {
 	 */
 	const [formData, setFormData] = useState<ILoginPayload>({
 		email: "",
-		password: "",
+		password: ""
 	});
 
 	/**
@@ -44,7 +44,7 @@ const Login: FC = () => {
 	 * @author KanLSK
 	 */
 	const passwordVisibility = () => {
-		setShowPassword((prev) => !prev);
+		setShowPassword(prev => !prev);
 	};
 
 	/**
@@ -67,10 +67,12 @@ const Login: FC = () => {
 
 	return (
 		<div className="absolute top-0 left-0 grid h-screen w-screen place-items-center bg-white font-poppins ">
-			<div className="relative flex h-auto w-[90vw] max-w-6xl flex-col items-center justify-center gap-4 bg-[#DBE2EF] py-10 md:h-[60vh] md:w-[70vw] md:flex-row md:justify-around">
+			<div className="rounded relative flex h-auto w-[90vw] max-w-6xl flex-col items-center justify-center gap-4 bg-[#DBE2EF] py-10 md:h-[60vh] md:w-[70vw] md:flex-row md:justify-around">
 				{/*icon for redirect to home */}
 				<Link to="/" className="absolute top-2 left-2">
-					<AiOutlineArrowLeft className="text-xl" />
+					<div className="back-arrow rounded bg-primary py-1 px-2 text-white">
+						<AiOutlineArrowLeft className="text-xl" />
+					</div>
 				</Link>
 				{/*logo*/}
 				<div className="md:hidden w-fit items-center gap-1 flex">
@@ -82,7 +84,7 @@ const Login: FC = () => {
 					<img src={vector} alt="vector" />
 				</div>
 				{/*separate line*/}
-				<div className="h-[1px] w-[95%] rounded-full border-2 border-[#3f71af60] bg-[#6398da60] md:h-[30vh] md:w-[0px]"></div>
+				<div className="h-[1px] w-[95%] rounded-full border-2 border-[#3f71af60] bg-[#6398da60] md:h-[30vh] md:w-[0px]" />
 				{/*form section */}
 				<form
 					onSubmit={submitHandler}
@@ -102,9 +104,8 @@ const Login: FC = () => {
 							type="email"
 							id="email"
 							value={formData.email}
-							onChange={(e) =>
-								updateFormData("email", e.target.value)
-							}
+							onChange={e =>
+								updateFormData("email", e.target.value)}
 							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
 							placeholder="example@multiemail.us"
 						/>
@@ -117,23 +118,20 @@ const Login: FC = () => {
 							type={showPassword ? "text" : "password"}
 							id="password"
 							value={formData.password}
-							onChange={(e) =>
-								updateFormData("password", e.target.value)
-							}
+							onChange={e =>
+								updateFormData("password", e.target.value)}
 							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
 							placeholder="password"
 						/>
-						{showPassword ? (
-							<AiFillEyeInvisible
-								className="absolute right-2 top-[60%]"
-								onClick={passwordVisibility}
-							/>
-						) : (
-							<AiFillEye
-								className="absolute right-2 top-[60%]"
-								onClick={passwordVisibility}
-							/>
-						)}
+						{showPassword
+							? <AiFillEyeInvisible
+									className="absolute right-2 top-[60%]"
+									onClick={passwordVisibility}
+								/>
+							: <AiFillEye
+									className="absolute right-2 top-[60%]"
+									onClick={passwordVisibility}
+								/>}
 					</div>
 					<button
 						type="submit"
