@@ -1,5 +1,5 @@
-import { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { FC, FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 //import photos
 import vector from "../../assets/photos/vector-login.svg";
@@ -11,14 +11,58 @@ import {
 	AiFillEye,
 	AiFillEyeInvisible,
 } from "react-icons/ai";
+import { ILoginPayload, loginHandler } from "../../actions/auth.actions";
+import useUpdateObjectState from "../../hooks/useUpdateObjectState";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 
 const Login: FC = () => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+
+	/**
+	 * This state will contain formData which will be posted to backend
+	 * when user clicks `login` button
+	 * @constant
+	 * @author aayushchugh
+	 */
+	const [formData, setFormData] = useState<ILoginPayload>({
+		email: "",
+		password: "",
+	});
+
+	/**
+	 * Weather password should be visible or not
+	 * @constant
+	 * @author KanLSK
+	 */
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 
+	const updateFormData = useUpdateObjectState<ILoginPayload>(setFormData);
+
+	/**
+	 * This function will change the password visibility
+	 * @author KanLSK
+	 */
 	const passwordVisibility = () => {
-		setShowPassword(prev => !prev);
+		setShowPassword((prev) => !prev);
+	};
+
+	/**
+	 * This function will run on form submit and will dispatch a action for login
+	 * @param e Form Event
+	 *
+	 * @author aayushchugh
+	 */
+	const submitHandler = async (e: FormEvent) => {
+		e.preventDefault();
+
+		try {
+			await dispatch(loginHandler(formData));
+			navigate("/");
+			// TODO: show feedback on UI
+		} catch (err) {
+			// TODO: show feedback on UI
+		}
 	};
 
 	return (
@@ -40,7 +84,10 @@ const Login: FC = () => {
 				{/*separate line*/}
 				<div className="h-[1px] w-[95%] rounded-full border-2 border-[#3f71af60] bg-[#6398da60] md:h-[30vh] md:w-[0px]"></div>
 				{/*form section */}
-				<div className="flex w-[90%] flex-col items-center gap-3 md:w-[40%] mt-2 md:mt-0">
+				<form
+					onSubmit={submitHandler}
+					className="flex w-[90%] flex-col items-center gap-3 md:w-[40%] mt-2 md:mt-0"
+				>
 					{/*logo*/}
 					<div className="hidden w-fit items-center gap-1 md:flex">
 						<img src={logo} alt="logo" className="w-[40px]" />
@@ -54,8 +101,10 @@ const Login: FC = () => {
 						<input
 							type="email"
 							id="email"
-							value={email}
-							onChange={e => setEmail(e.target.value)}
+							value={formData.email}
+							onChange={(e) =>
+								updateFormData("email", e.target.value)
+							}
 							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
 							placeholder="example@multiemail.us"
 						/>
@@ -67,8 +116,10 @@ const Login: FC = () => {
 						<input
 							type={showPassword ? "text" : "password"}
 							id="password"
-							value={password}
-							onChange={e => setPassword(e.target.value)}
+							value={formData.password}
+							onChange={(e) =>
+								updateFormData("password", e.target.value)
+							}
 							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
 							placeholder="password"
 						/>
@@ -84,7 +135,10 @@ const Login: FC = () => {
 							/>
 						)}
 					</div>
-					<button className="rounded-md bg-[#5271ff] px-2 py-1 text-[14px] text-white">
+					<button
+						type="submit"
+						className="rounded-md bg-[#5271ff] px-2 py-1 text-[14px] text-white"
+					>
 						Log In
 					</button>
 					<p className="text-[12px]">
@@ -94,7 +148,7 @@ const Login: FC = () => {
 						</Link>{" "}
 						here
 					</p>
-				</div>
+				</form>
 			</div>
 		</div>
 	);
