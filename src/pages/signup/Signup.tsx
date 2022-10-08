@@ -97,7 +97,7 @@ const Signup: FC = () => {
 			<div className="rounded relative flex h-auto w-[90vw] max-w-6xl flex-col items-center justify-center gap-4 bg-[#DBE2EF] py-10 md:h-[60vh] md:w-[70vw] md:flex-row md:justify-around">
 				{/*icon for redirect to home */}
 				<Link to="/" className="absolute top-2 left-2">
-					<div className="back-arrow rounded bg-primary py-1 px-2 text-white">
+					<div className="back-arrow rounded py-1 px-2">
 						<AiOutlineArrowLeft className="text-xl" />
 					</div>
 				</Link>
