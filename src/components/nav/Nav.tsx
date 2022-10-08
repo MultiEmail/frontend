@@ -8,7 +8,7 @@ import logo from "../../assets/logos/icon-transparent.svg";
  */
 const Nav: FC = () => {
 	return (
-		<div className="font-poppins backdrop-blur-lg w-screen flex justify-between items-center px-4 border-b-2 border-gray-400 h-[3.5em]">
+		<div className="absolute z-999 font-poppins backdrop-blur-lg w-screen flex justify-between items-center px-4 border-b-2 border-gray-400 h-[3.5em]">
 			{/*logo section*/}
 			<Link to="/">
 				<div className="flex items-center gap-2">
