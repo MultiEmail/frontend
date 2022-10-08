@@ -64,7 +64,7 @@ const Verification: FC = () => {
 							<div className="flex flex-col w-[80%] mt-5">
 								{/* This will hold the input field */}
 								<div className="flex flex-col">
-									<label className="text-sm text-[#3F72AF]">Verification Code</label>
+									<label className="text-sm text-[#3F72AF]" htmlFor="verificationCode">Verification Code</label>
 									<input
 										className="outline-none focus:border-[#3F72AF] border-2 border-white focus:border-2 h-full rounded-md p-2 mt-2 transition-colors duration-300"
 										type="number"
