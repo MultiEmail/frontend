@@ -1,0 +1,14 @@
+{
+    // Comments are supported, like tsconfig.json
+    "entryPoints": [
+		"src/componenets/**/*",
+		"src/hooks/**/*",
+		"src/pages/home/**/*",
+		"src/pages/login/**/*",
+		"src/pages/not_found/**/*",
+		"src/utils/**/*",
+		"src/App.tsx",
+		"src/index.tsx"
+	],
+    "out": "docs"
+}
