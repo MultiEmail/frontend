@@ -39,7 +39,7 @@ For development server (http://localhost:3000)
 ```bash
 git clone https://github.com/MultiEmail/MultiEmail-frontend.git
 cd MultiEmail-frontend
-docker-compose up
+docker compose --env-file ./.env
 ```
 
 

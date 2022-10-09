@@ -1,12 +1,12 @@
 FROM node:16-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package.json /app
-COPY yarn.lock /app
+COPY package.json .
+COPY yarn.lock .
 
 RUN yarn install
 
-COPY . /app
+COPY . .
 
 CMD ["yarn", "run", "start"]
