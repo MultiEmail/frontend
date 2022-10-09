@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { ISignupPayload, signupHandler } from "../../actions/auth.actions";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import useUpdateObjectState from "../../hooks/useUpdateObjectState";
+import Tooltip from "../../components/tooltip/Tooltip";
+import * as yup from 'yup';
+import { useFormik, validateYupSchema } from "formik";
 //import photos
 import vector from "../../assets/photos/vector-signup.svg";
 import logo from "../../assets/logos/icon-transparent.svg";
@@ -12,6 +15,9 @@ import {
 	AiFillEye,
 	AiFillEyeInvisible,
 } from "react-icons/ai";
+import { AnimatePresence, motion } from "framer-motion";
+import { AxiosError } from "axios";
+import { IAPIResponseError } from "../../utils/api.util";
 /**
  * Signup page
  * @returns JSX.Element
@@ -20,53 +26,112 @@ const Signup: FC = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	/**
-	 * This state will contain formData which will be posted to backend
-	 * when user clicks `signup` button
-	 * @constant
-	 * @author aayushchugh
-	 */
-	const [formData, setFormData] = useState<ISignupPayload>({
-		username: "",
-		email: "",
-		password: "",
-		cpassword: "",
-	});
-
-	const [error, setError] = useState<string>("");
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [showConfirmPassword, setShowConfirmPassword] =
 		useState<boolean>(false);
+	const [pageLoaded, setPageLoaded] = useState<boolean>(false);
+	const [canShowTooltip, setCanShowTooltip] = useState<boolean>(false);
+	const [tooltipMessage, setTooltipMessage] = useState<string>("");
+	const [tooltipType, setTooltipType] = useState<"error" | "success">("success");
 
-	const updateFormData = useUpdateObjectState<ISignupPayload>(setFormData);
+	useEffect(() => {
+		if (!pageLoaded) {
 
-	/**
-	 * This function will be called when form is submitted
-	 * @param e form event
-	 *
-	 * @author aayushchugh
-	 */
-	const submitHandler = async (e: FormEvent) => {
-		e.preventDefault();
-		try {
-			await dispatch(signupHandler(formData));
-			navigate(`/verification?email=${formData.email}`);
+			validateForm();
 
-			// TODO: show success message on UI
-		} catch (err) {
-			// TODO: show error on UI
+			setPageLoaded(true);
 		}
-	};
+	}, [pageLoaded]);
+
+	const { values, errors, touched, handleBlur, isSubmitting, handleSubmit, handleChange, resetForm, validateForm } = useFormik({
+		initialValues: {
+			username: "",
+			email: "",
+			password: "",
+			cpassword: "",
+			terms: false,
+			marketting: false
+		},
+		validationSchema: yup.object().shape({
+			username: yup.string().required("Username is required").min(3, "Username must be at least 3 characters long").max(20, "Username must be at most 20 characters long").lowercase("Username must be lowercase"),
+			email: yup.string().email().required(),
+			password: yup.string().min(8).required(),
+			cpassword: yup.string().oneOf([yup.ref("password")], "Passwords must match").required(),
+			terms: yup.boolean().oneOf([true], "You must accept the terms and conditions").required(),
+			marketting: yup.boolean().oneOf([true, false]).required()
+		}),
+		onSubmit: async (values: ISignupPayload) => {
+			try {
+				await dispatch(signupHandler(values));
+				setTooltipMessage("Your account has been created successfully. Check your email for verification link.");
+				setTooltipType("success");
+				setCanShowTooltip(true);
+				resetForm();
+				setTimeout(() => {
+					setCanShowTooltip(false);
+				}
+				, 5000);
+			}
+			catch (e) {
+				const error = e as AxiosError<IAPIResponseError>;
+				console.log(error)
+				setTooltipMessage("An error occured while trying to signup. Please try again later.");
+				setTooltipType("error");
+				setCanShowTooltip(true);
+				setTimeout(() => {
+					setCanShowTooltip(false);
+				}, 5000);
+			}
+		},
+	});
+
+	// /**
+	//  * This state will contain formData which will be posted to backend
+	//  * when user clicks `signup` button
+	//  * @constant
+	//  * @author aayushchugh
+	//  */
+	// const [formData, setFormData] = useState<ISignupPayload>({
+	// 	username: "",
+	// 	email: "",
+	// 	password: "",
+	// 	cpassword: "",
+	// 	terms: false,
+	// 	marketting: false,
+	// });
+
+	// const [error, setError] = useState<string>("");
+
+
+	// const updateFormData = useUpdateObjectState<ISignupPayload>(setFormData);
+
+	// /**
+	//  * This function will be called when form is submitted
+	//  * @param e form event
+	//  *
+	//  * @author aayushchugh
+	//  */
+	// const submitHandler = async (e: FormEvent) => {
+	// 	e.preventDefault();
+	// 	try {
+	// 		await dispatch(signupHandler(formData));
+	// 		navigate(`/verification?email=${formData.email}`);
+
+	// 		// TODO: show success message on UI
+	// 	} catch (err) {
+	// 		// TODO: show error on UI
+	// 	}
+	// };
 
 	//show password in input field
-	const passwordVisibility = () => {
-		setShowPassword((prev) => !prev);
-	};
+	// const passwordVisibility = () => {
+	// 	setShowPassword((prev) => !prev);
+	// };
 
-	//show confirm password in input field
-	const confirmPasswordVisibility = () => {
-		setShowConfirmPassword((prev) => !prev);
-	};
+	// //show confirm password in input field
+	// const confirmPasswordVisibility = () => {
+	// 	setShowConfirmPassword((prev) => !prev);
+	// };
 
 	/*
 	  TODO: Add validation for following fields
@@ -91,144 +156,166 @@ const Signup: FC = () => {
 		- [x]enter key for submit
 		- [x]responsive design
 	 */
+
 	return (
-		<div className="absolute top-0 left-0 grid h-screen w-screen place-items-center bg-white font-poppins">
-			<div className="relative flex h-auto w-[90vw] max-w-6xl flex-col items-center justify-center gap-4 bg-[#DBE2EF] py-10 md:h-[60vh] md:w-[70vw] md:flex-row md:justify-around">
-				{/*icon for redirect to home */}
-				<Link to="/" className="absolute top-2 left-2">
-					<AiOutlineArrowLeft className="text-xl" />
-				</Link>
-				{/*logo*/}
-				<div className="flex w-fit items-center gap-1 md:hidden">
-					<img src={logo} alt="logo" className="w-[50px]" />
-					<p className="text-lg">Multi Email</p>
+		<AnimatePresence>
+			<motion.div className="flex flex-col font-poppins justify-center items-center h-screen w-screen no-select" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
+				<div className="flex flex-col bg-[#DBE2EF] justify-center items rounded-[10px] h-fit  sm:w-[80%] w-fit p-3 lg:p-3 shadow-lg box-shadow">
+
+					<div className="flex flex-row justify-center">
+						<div className="hidden lg:flex w-[50%] justify-center items-center mx-10">
+							{/* vector */}
+							<img src={vector} alt="vector" className="flex w-[90%] h-[90%]"/>
+						</div>
+						<div className="hidden lg:flex h-[80%] place-self-center border-r-[3px] rounded-sm border-r-[#3F72AF] opacity-60"/>
+						<div className="flex flex-col lg:w-[50%] justify-center items-center lg:ml-10">
+							{/* logo */}
+							<div className="flex flex-col p-5 w-full">
+								<div className="flex flex-row p-2 justify-center">
+									<img src={logo} alt="logo" className="flex w-[48px] h-[48px]"/>
+									<h1 className="flex text-[#112D4E] justfiy-center items-center text-2xl"> Multi Email </h1>
+								</div>
+								<div className="flex flex-col justify-center">
+									<form className="flex flex-col">
+										{/* username */}
+										<div className="flex flex-col my-2">
+											<label className="text-[#112D4E] text-sm" htmlFor="username"> Username </label>
+											<input
+												type="text"
+												id="username"
+												className={"outline-none border-2 text-[15px] border-white h-full rounded-[10px] p-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.username ? " border-[#FF0000]" : " border-blue-600")}
+												placeholder="Enter your username"
+												value={values.username}
+												onChange={handleChange}
+												onBlur={handleBlur}
+											/>
+										</div>
+										{/* email */}
+										<div className="flex flex-col my-2">
+											<label className="text-[#112D4E] text-sm" htmlFor="email"> Email </label>
+											<input
+												type="email"
+												id="email"
+												className={"outline-none border-2 text-[15px] border-white h-full rounded-[10px] p-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.email ? " border-[#FF0000]" : " border-blue-600")}
+												placeholder="Enter your email"
+												value={values.email}
+												onChange={handleChange}
+												onBlur={handleBlur}
+											/>
+										</div>
+										{/* password */}
+										<div className="flex flex-col my-2">
+											<label className="text-[#112D4E] text-sm" htmlFor="password"> Password </label>
+											<div className="flex flex-row w-full justify-between items-center">
+												<input
+													type={showPassword ? "text" : "password"}
+													id="password"
+													className={"outline-none w-[80%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.password ? " border-[#FF0000]" : " border-blue-600")}
+														placeholder="Enter your password"
+														value={values.password}
+														onChange={handleChange}
+														onBlur={handleBlur}
+													/>
+													<div
+														className="justify-center w-fit items-center text-black hover:bg-[#112D4E60] duration-300 transition-colors cursor-pointer p-2 rounded-full mx-2 mt-2"
+														onClick={() => setShowPassword(!showPassword)}
+													>
+														{showPassword ? (
+															<AiFillEye className="place-self-center" />
+															) : (
+															<AiFillEyeInvisible className="place-self-center"  />
+														)}
+													</div>
+												</div>
+											</div>
+											<div className="flex flex-col my-2">
+												<label className="text-[#112D4E] text-sm" htmlFor="confirmPassword"> Confirm Password </label>
+											<div className="flex flex-row w-full justify-between items-center">
+												<input
+													type={showConfirmPassword ? "text" : "password"}
+													id="cpassword"
+													className={"outline-none w-[80%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.cpassword ? " border-[#FF0000]" : " border-blue-600")}
+													placeholder="Confirm your password"
+													value={values.cpassword}
+													onChange={handleChange}
+													onBlur={handleBlur}
+												/>
+												<div
+													className="justify-center w-fit items-center text-black hover:bg-[#112D4E30] duration-300 transition-colors cursor-pointer p-2 rounded-full mx-2 mt-2"
+													onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+												>
+													{showConfirmPassword ? (
+														<AiFillEye />
+														) : (
+														<AiFillEyeInvisible />
+													)}
+												</div>
+											</div>
+										</div>
+										{/* Terms Conditions and Markettings Opt In */}
+										<div className="flex flex-col my-3">
+											<div className="flex flex-row justify-start items-center">
+												<input
+													type="checkbox"
+													id="terms"
+													className={"flex outline-none w-[18px] h-[18px] border-2 text-[10px] border-[#3F72AF] rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.terms ? " border-[#FF0000]" : " ")}
+													placeholder="Enter your password"
+													checked={values.terms}
+													onChange={handleChange}
+													onBlur={handleBlur}
+												/>
+												<label className="flex mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="terms"> I agree to the <a href="#" className="underline px-1 text-[#3F72AF]">terms and conditions.</a> </label>
+											</div>
+											<div className="flex flex-row justify-start items-center mt-2">
+												<input
+													type="checkbox"
+													id="marketting"
+													className={"flex outline-none w-[18px] h-[18px] border-2 text-[10px] border-[#3F72AF] rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.marketting ? " border-[#FF0000]" : " ")}
+													placeholder="Enter your password"
+													checked={values.marketting}
+													onChange={handleChange}
+													onBlur={handleBlur}
+												/>
+												<label className="flex mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="marketing">I allow Multi Mail to send me marketting email's.</label>
+											</div>
+										</div>
+										{/* submit button */}
+										<div className="flex flex-col my-2">
+											<button
+												type="submit"
+												className={"bg-[#5271FF] text-white text-[15px] font-bold py-2 px-4 rounded-[10px] hover:bg-[#112D4E70] duration-300 transition-colors" + (isSubmitting ? " opacity-50 cursor-not-allowed" : "") + (Object.keys(errors).length > 0 ? " opacity-50 cursor-not-allowed" : "")}
+												onClick={(e) => {
+													e.preventDefault();
+													handleSubmit();
+												}}
+											>
+												Sign Up
+											</button>
+										</div>
+										{/* Already have an account */}
+										<div className="flex flex-col my-2">
+											<p className="text-[#112D4E] text-sm"> Already have an account? <Link to="/login"><a className="mx-1 text-[#5271FF] underline ">Login</a></Link> here. </p>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				{/*image section */}
-				<div className="flex h-[30vh] w-[70%] max-w-sm items-center md:w-[50%]">
-					<img src={vector} alt="vector" />
-				</div>
-				{/*separate line*/}
-				<div className="h-[1px] w-[95%] rounded-full border-2 border-[#3f71af60] bg-[#6398da60] md:h-[30vh] md:w-[0px]"></div>
-				<form
-					className="flex w-[90%] flex-col items-center gap-3 md:w-[40%]"
-					onSubmit={submitHandler}
-				>
-					{/*form section */}
-					{/*logo*/}
-					<div className="hidden w-fit items-center gap-1 md:flex">
-						<img src={logo} alt="logo" className="w-[40px]" />
-						<p>Multi Email</p>
-					</div>
-					<div className="flex w-[90%] flex-col gap-2 text-[#3F72AF]">
-						<label className="text-[14px]" htmlFor="username">
-							Username:{" "}
-						</label>
-						<input
-							id="username"
-							type="text"
-							placeholder="multiemail"
-							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
-							value={formData.username}
-							onChange={(e) =>
-								updateFormData("username", e.target.value)
-							}
-						/>
-					</div>
-					<div className="flex w-[90%] flex-col gap-2 text-[#3F72AF]">
-						<label className="text-[14px]" htmlFor="email">
-							Email:{" "}
-						</label>
-						<input
-							id="email"
-							type="email"
-							placeholder="info@multiemail.us"
-							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
-							value={formData.email}
-							onChange={(e) =>
-								updateFormData("email", e.target.value)
-							}
-						/>
-					</div>
-					<div className="relative flex w-[90%] flex-col gap-2 text-[#3F72AF]">
-						<label className="text-[14px]" htmlFor="password">
-							Password:{" "}
-						</label>
-						<input
-							id="password"
-							type={showPassword ? "text" : "password"}
-							placeholder="strongpassword"
-							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
-							value={formData.password}
-							onChange={(e) =>
-								updateFormData("password", e.target.value)
-							}
-						/>
-						{showPassword ? (
-							<AiFillEyeInvisible
-								className="absolute right-2 top-[65%] cursor-pointer"
-								onClick={passwordVisibility}
-							/>
-						) : (
-							<AiFillEye
-								className="absolute right-2 top-[65%] cursor-pointer"
-								onClick={passwordVisibility}
-							/>
-						)}
-					</div>
-					<div className="relative flex w-[90%] flex-col gap-2 text-[#3F72AF]">
-						<label className="text-[14px]" htmlFor="cpassword">
-							Confirm Password:{" "}
-						</label>
-						<input
-							id="cpassword"
-							type={showConfirmPassword ? "text" : "password"}
-							placeholder="confirm your password"
-							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
-							value={formData.cpassword}
-							onChange={(e) =>
-								updateFormData("cpassword", e.target.value)
-							}
-						/>
-						{showConfirmPassword ? (
-							<AiFillEyeInvisible
-								className="absolute right-2 top-[65%] cursor-pointer"
-								onClick={confirmPasswordVisibility}
-							/>
-						) : (
-							<AiFillEye
-								className="absolute right-2 top-[65%] cursor-pointer"
-								onClick={confirmPasswordVisibility}
-							/>
-						)}
-					</div>
-					<div className="flex items-center gap-2">
-						<input type="checkbox" />
-						<label className="text-[12px]">
-							I agree with the{" "}
-							<span className="text-[#5271ff] underline">
-								term of services
-							</span>
-						</label>
-					</div>
-					<button
-						type="submit"
-						className="rounded bg-primary py-1 px-2 text-white"
-					>
-						Signup
-					</button>
-					<p className="text-[12px]">
-						Already have an account?{" "}
-						<Link
-							to="/login"
-							className="text-[#5271ff] underline cursor-pointer"
-						>
-							Log In
-						</Link>{" "}
-						here
-					</p>
-				</form>
-			</div>
-		</div>
+				{/* // Note: Cannot include this due to the sheer size of the page.
+				<div className="absolute bottom-[15vh] lg:flex p-3 h-fit hover:bg-gray-300 duration-300 rounded-full" onClick={() => {
+					navigate(-1);
+				}}>
+					<AiOutlineArrowLeft className="w-[22px] h-[22px]"/>
+				</div> */}
+				{/* ToolTip */}
+				<AnimatePresence>
+					{
+						canShowTooltip ? <Tooltip type={tooltipType} message={tooltipMessage} /> : null
+					}
+				</AnimatePresence>
+			</motion.div>
+		</AnimatePresence>
 	);
 };
 

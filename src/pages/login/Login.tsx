@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //import photos
@@ -14,10 +14,47 @@ import {
 import { ILoginPayload, loginHandler } from "../../actions/auth.actions";
 import useUpdateObjectState from "../../hooks/useUpdateObjectState";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { AnimatePresence, motion } from "framer-motion";
+import Tooltip from "../../components/tooltip/Tooltip";
+import { IAPIResponseError } from "../../utils/api.util";
+import { AxiosError } from "axios";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
 const Login: FC = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+
+	const [canShowTooltip, setCanShowTooltip] = useState<boolean>(false);
+	const [tooltipMessage, setTooltipMessage] = useState<string>("");
+	const [tooltipType, setTooltipType] = useState<"error" | "success">("success");
+	const [pageLoaded, setPageLoaded] = useState<boolean>(false);
+
+
+	const onSubmit = async (values: ILoginPayload, actions: any) => {
+		try {
+			await dispatch(loginHandler(values));
+			setTooltipMessage("You have been logged in successfully!");
+			setTooltipType("success");
+			setCanShowTooltip(true);
+			resetForm();
+			setTimeout(() => {
+				setCanShowTooltip(false);
+				
+				// Navigate to the dashboard.
+			}
+			, 5000);
+		}
+		catch (e) {
+			const er = e as AxiosError<IAPIResponseError>;
+			setTooltipMessage("Something went wrong. Please try again later.");
+			setTooltipType("error");
+			setCanShowTooltip(true);
+			setTimeout(() => {
+				setCanShowTooltip(false);
+			}, 5000);
+		}		
+	};
 
 	/**
 	 * This state will contain formData which will be posted to backend
@@ -25,19 +62,19 @@ const Login: FC = () => {
 	 * @constant
 	 * @author aayushchugh
 	 */
-	const [formData, setFormData] = useState<ILoginPayload>({
-		email: "",
-		password: "",
-	});
+	// const [formData, setFormData] = useState<ILoginPayload>({
+	// 	email: "",
+	// 	password: "",
+	// });
 
-	/**
-	 * Weather password should be visible or not
-	 * @constant
-	 * @author KanLSK
-	 */
+	// /**
+	//  * Weather password should be visible or not
+	//  * @constant
+	//  * @author KanLSK
+	//  */
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 
-	const updateFormData = useUpdateObjectState<ILoginPayload>(setFormData);
+	// const updateFormData = useUpdateObjectState<ILoginPayload>(setFormData);
 
 	/**
 	 * This function will change the password visibility
@@ -47,110 +84,141 @@ const Login: FC = () => {
 		setShowPassword((prev) => !prev);
 	};
 
-	/**
-	 * This function will run on form submit and will dispatch a action for login
-	 * @param e Form Event
-	 *
-	 * @author aayushchugh
-	 */
-	const submitHandler = async (e: FormEvent) => {
-		e.preventDefault();
+	// /**
+	//  * This function will run on form submit and will dispatch a action for login
+	//  * @param e Form Event
+	//  *
+	//  * @author aayushchugh
+	//  */
+	// const submitHandler = async (e: FormEvent) => {
+	// 	e.preventDefault();
 
-		try {
-			await dispatch(loginHandler(formData));
-			navigate("/");
-			// TODO: show feedback on UI
-		} catch (err) {
-			// TODO: show feedback on UI
+	// 	try {
+	// 		await dispatch(loginHandler(formData));
+	// 		navigate("/");
+	// 		// TODO: show feedback on UI
+	// 	} catch (err) {
+	// 		// TODO: show feedback on UI
+	// 	}
+	// };
+
+	useEffect(() => {
+		// This will run only once when the page is loaded.
+		if(!pageLoaded) {
+			validateForm();
+			setPageLoaded(true);
 		}
-	};
+	}, [pageLoaded]);
+
+	const loginSchema = Yup.object().shape({
+		email: Yup.string().email("Invalid email").required("Email is required"),
+		password: Yup.string().required("Password is required"),
+	});
+
+	const { values, errors, touched, handleBlur, isSubmitting, handleSubmit, handleChange, resetForm, validateForm } = useFormik({
+        initialValues: {
+			email: "",
+			password: "",
+        },
+        validationSchema: loginSchema,
+        onSubmit,
+    })
 
 	return (
-		<div className="absolute top-0 left-0 grid h-screen w-screen place-items-center bg-white font-poppins ">
-			<div className="relative flex h-auto w-[90vw] max-w-6xl flex-col items-center justify-center gap-4 bg-[#DBE2EF] py-10 md:h-[60vh] md:w-[70vw] md:flex-row md:justify-around">
+		<AnimatePresence>
+			<motion.div className="flex flex-col font-poppins justify-center items-center h-screen w-screen no-select" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
+				<div className="flex flex-col bg-[#DBE2EF] justify-center rounded-[10px] h-fit sm:w-[80%] w-fit p-3 lg:p-3 shadow-lg box-shadow">
+					<div className="flex flex-row justify-center">
+						<div className="hidden lg:flex w-[50%] justify-center items-center mx-10">
+							{/* vector */}
+							<img src={vector} alt="vector" className="flex w-[90%] h-[90%]"/>
+						</div>
+						<div className="hidden lg:flex h-[80%] place-self-center border-r-[3px] rounded-sm border-r-[#3F72AF] opacity-60"/>
+						<div className="flex flex-col lg:w-[50%] justify-center items-center lg:ml-10">
+							{/* logo */}
+							<div className="flex flex-col p-5 w-full">
+								<div className="flex flex-row p-2 justify-center">
+									<img src={logo} alt="logo" className="flex w-[48px] h-[48px]"/>
+									<h1 className="flex text-[#112D4E] justfiy-center items-center text-2xl"> Multi Email </h1>
+								</div>
+								<div className="flex flex-col justify-center">
+									<form className="flex flex-col">
+
+										{/* email */}
+										<div className="flex flex-col my-2">
+											<label className="text-[#112D4E] text-sm" htmlFor="email"> Email </label>
+											<input
+												type="email"
+												id="email"
+												className={"outline-none border-2 text-[15px] border-white h-full rounded-[10px] p-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.email ? " border-[#FF0000]" : " border-blue-600")}
+												placeholder="Enter your email"
+												value={values.email}
+												onChange={handleChange}
+												onBlur={handleBlur}
+											/>
+										</div>
+										{/* password */}
+										<div className="flex flex-col my-2">
+											<label className="text-[#112D4E] text-sm" htmlFor="password"> Password </label>
+											<div className="flex flex-row w-full justify-between items-center">
+												<input
+													type={showPassword ? "text" : "password"}
+													id="password"
+													className={"outline-none w-[80%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.password ? " border-[#FF0000]" : " border-blue-600")}
+														placeholder="Enter your password"
+														value={values.password}
+														onChange={handleChange}
+														onBlur={handleBlur}
+													/>
+													<div
+														className="justify-center w-fit items-center text-black hover:bg-[#112D4E60] duration-300 transition-colors cursor-pointer p-2 rounded-full mx-2 mt-2"
+														onClick={() => passwordVisibility()}
+													>
+														{showPassword ? (
+															<AiFillEye className="place-self-center" />
+															) : (
+															<AiFillEyeInvisible className="place-self-center"  />
+														)}
+													</div>
+												</div>
+										</div>
+										{/* submit button */}
+										<div className="flex flex-col my-2">
+											<button
+												type="submit"
+												className={"bg-[#5271FF] text-white text-[15px] font-bold py-2 px-4 rounded-[10px] hover:bg-[#112D4E70] duration-300 transition-colors" + (isSubmitting ? " opacity-50 cursor-not-allowed" : "") + (Object.keys(errors).length > 0 ? " opacity-50 cursor-not-allowed" : "")}
+												onClick={(e) => {
+													e.preventDefault();
+													handleSubmit();
+												}}
+											>
+												Log In
+											</button>
+										</div>
+										{/* Already have an account */}
+										<div className="flex flex-col my-2">
+											<p className="text-[#112D4E] text-sm"> Dont have an account? <Link to="/signup"><a className="mx-1 text-[#5271FF] underline ">Signup</a></Link> here. </p>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				{/*icon for redirect to home */}
-				<Link to="/" className="absolute top-2 left-2">
-					<AiOutlineArrowLeft className="text-xl" />
-				</Link>
-				{/*logo*/}
-				<div className="md:hidden w-fit items-center gap-1 flex">
-					<img src={logo} alt="logo" className="w-[50px]" />
-					<p className="text-lg">Multi Email</p>
+				<div className="absolute bottom-[15vh] lg:flex p-3 h-fit hover:bg-gray-300 duration-300 rounded-full" onClick={() => {
+					navigate(-1);
+				}}>
+					<AiOutlineArrowLeft className="w-[22px] h-[22px]"/>
 				</div>
-				{/*image section */}
-				<div className="flex h-[30vh] w-[90%] items-center md:w-[50%] max-w-sm">
-					<img src={vector} alt="vector" />
-				</div>
-				{/*separate line*/}
-				<div className="h-[1px] w-[95%] rounded-full border-2 border-[#3f71af60] bg-[#6398da60] md:h-[30vh] md:w-[0px]"></div>
-				{/*form section */}
-				<form
-					onSubmit={submitHandler}
-					className="flex w-[90%] flex-col items-center gap-3 md:w-[40%] mt-2 md:mt-0"
-				>
-					{/*logo*/}
-					<div className="hidden w-fit items-center gap-1 md:flex">
-						<img src={logo} alt="logo" className="w-[40px]" />
-						<p>Multi Email</p>
-					</div>
-					{/*form*/}
-					<div className="flex w-[90%] flex-col gap-2 text-[#3F72AF]">
-						<label htmlFor="email" className="text-[14px]">
-							Email
-						</label>
-						<input
-							type="email"
-							id="email"
-							value={formData.email}
-							onChange={(e) =>
-								updateFormData("email", e.target.value)
-							}
-							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
-							placeholder="example@multiemail.us"
-						/>
-					</div>
-					<div className="relative flex w-[90%] flex-col gap-2 text-[#3F72AF]">
-						<label htmlFor="password" className="text-[14px]">
-							Password
-						</label>
-						<input
-							type={showPassword ? "text" : "password"}
-							id="password"
-							value={formData.password}
-							onChange={(e) =>
-								updateFormData("password", e.target.value)
-							}
-							className="rounded-md px-2 py-1 text-[12px] placeholder-[#3f72af]"
-							placeholder="password"
-						/>
-						{showPassword ? (
-							<AiFillEyeInvisible
-								className="absolute right-2 top-[60%]"
-								onClick={passwordVisibility}
-							/>
-						) : (
-							<AiFillEye
-								className="absolute right-2 top-[60%]"
-								onClick={passwordVisibility}
-							/>
-						)}
-					</div>
-					<button
-						type="submit"
-						className="rounded-md bg-[#5271ff] px-2 py-1 text-[14px] text-white"
-					>
-						Log In
-					</button>
-					<p className="text-[12px]">
-						Don't have an account yet?{" "}
-						<Link to="/signup" className="text-[#5271ff] underline">
-							Sign Up
-						</Link>{" "}
-						here
-					</p>
-				</form>
-			</div>
-		</div>
+				{/* ToolTip */}
+				<AnimatePresence>
+					{
+						canShowTooltip ? <Tooltip type={tooltipType} message={tooltipMessage} /> : null
+					}
+				</AnimatePresence>
+			</motion.div>
+		</AnimatePresence>
 	);
 };
 
