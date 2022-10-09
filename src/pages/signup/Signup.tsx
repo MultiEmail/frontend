@@ -160,7 +160,7 @@ const Signup: FC = () => {
 	return (
 		<AnimatePresence>
 			<motion.div className="flex flex-col font-poppins justify-center items-center h-screen w-screen no-select" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
-				<div className="flex flex-col bg-[#DBE2EF] justify-center items rounded-[10px] h-fit  sm:w-[80%] w-fit p-3 lg:p-3 shadow-lg box-shadow">
+				<div className="flex flex-col bg-[#DBE2EF70] justify-center items rounded-[10px] h-fit w-[80%] p-3 lg:p-3 shadow-lg box-shadow">
 
 					<div className="flex flex-row justify-center">
 						<div className="hidden lg:flex w-[50%] justify-center items-center mx-10">
@@ -170,11 +170,7 @@ const Signup: FC = () => {
 						<div className="hidden lg:flex h-[80%] place-self-center border-r-[3px] rounded-sm border-r-[#3F72AF] opacity-60"/>
 						<div className="flex flex-col lg:w-[50%] justify-center items-center lg:ml-10">
 							{/* logo */}
-							<div className="flex flex-col p-5 w-full">
-								<div className="flex flex-row p-2 justify-center">
-									<img src={logo} alt="logo" className="flex w-[48px] h-[48px]"/>
-									<h1 className="flex text-[#112D4E] justfiy-center items-center text-2xl"> Multi Email </h1>
-								</div>
+							<div className="flex flex-col p-5 w-[90%]">
 								<div className="flex flex-col justify-center">
 									<form className="flex flex-col">
 										{/* username */}

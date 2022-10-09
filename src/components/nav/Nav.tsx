@@ -23,8 +23,7 @@ const Nav: FC = () => {
 
 
 	return (
-		<div>
-        <div className='w-screen h-[60px] font-poppins z-999 fixed backdrop-blur-lg'>
+        <div className='absolute top-0 w-screen h-[60px] font-poppins backdrop-blur-lg'>
             <div className='px-2 flex justify-between items-center w-full h-full'>
                 <div className='flex flex-row items-center'>
 					<img src={logo} alt="logo" className="w-[48px] h-[48px]" />
@@ -46,12 +45,12 @@ const Nav: FC = () => {
             </div>
             
             {/* Mobile Navbar, Side Menu is hidden so no need for update */}
-            <div className={!isOpen ? 'hidden' : 'absolute bg-zinc-100 w-full px-8 ' }>
+            <div className={!isOpen ? 'hidden' : 'z-998 absolute w-full px-8 bg-white' }>
                 <ul>
-					<Link to="/about"><li className={"border-b-2 w-full py-2 text-lg duration-300 " + (currentRoute === "about" ? " border-[#5272ff60]" : null)}>About</li></Link>
-					<Link to="/github"><li className={"border-b-2 w-full py-2 text-lg duration-300 " + (currentRoute === "github" ? " border-[#5272ff60]" : null)}>Github</li></Link>
-					<Link to="/team"><li className={"border-b-2 w-full py-2 text-lg duration-300 " + (currentRoute === "team" ? " border-[#5272ff60]" : null)}>Team</li></Link>
-					<Link to="/support"><li className={"border-b-2 w-full py-2 text-lg duration-300 " + (currentRoute === "support" ? " border-[#5272ff60]" : null)}>Support</li></Link>
+					<Link to="/about"><li className={"border-b-2 w-full py-3 text-lg duration-300 " + (currentRoute === "about" ? " border-[#5272ff60]" : null)}>About</li></Link>
+					<Link to="/github"><li className={"border-b-2 w-full py-3 text-lg duration-300 " + (currentRoute === "github" ? " border-[#5272ff60]" : null)}>Github</li></Link>
+					<Link to="/team"><li className={"border-b-2 w-full py-3 text-lg duration-300 " + (currentRoute === "team" ? " border-[#5272ff60]" : null)}>Team</li></Link>
+					<Link to="/support"><li className={"border-b-2 w-full py-3 text-lg duration-300 " + (currentRoute === "support" ? " border-[#5272ff60]" : null)}>Support</li></Link>
 				</ul>
 				<div className="flex flex-col w-full">
 					<Link to="/signup" className="text-black px-4 py-2 rounded-md hover:bg-[#5272ff30] duration-200 mx-2 hover:text-black font-semibold text-center my-4">Sign Up</Link>
@@ -60,7 +59,6 @@ const Nav: FC = () => {
 			</div>
 
         </div>
-    </div>
 	);
 };
 
