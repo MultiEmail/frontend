@@ -24,7 +24,9 @@ const Nav: FC = () => {
 					</button>
 				</Link>
 				<Link to="/login">
-					<button className="bg-[#F9F7F7] text-[#112D4E] px-4 py-1 rounded-md">
+
+					<button className="bg-[#DBE2EF] text-black px-4 py-1 rounded-md">
+
 						Log In
 					</button>
 				</Link>
