@@ -1,19 +1,12 @@
 version: '3.7'
 
 services:
-  web-dev:
+  frontend:
     container_name: MultiEmail-frontend-dev
     stdin_open: true
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
+    build: .
     ports:
       - "3000:3000"
     volumes:
       - "/app/node_modules"
       - "./:/app"
-  web-prod:
-    container_name: MultiEmail-frontend-prod
-    build: .
-    ports:
-      - '1337:80'

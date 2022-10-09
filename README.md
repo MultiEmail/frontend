@@ -39,15 +39,9 @@ For development server (http://localhost:3000)
 ```bash
 git clone https://github.com/MultiEmail/MultiEmail-frontend.git
 cd MultiEmail-frontend
-docker-compose up web-dev
+docker-compose up
 ```
 
-For production server (http://localhost:1337)
-```bash
-git clone https://github.com/MultiEmail/MultiEmail-frontend.git
-cd MultiEmail-frontend
-docker-compose up web-prod
-```
 
 # Wanna join the team?
 
