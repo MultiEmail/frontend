@@ -11,3 +11,11 @@
   z-index: -10;
   background-size: cover;
 }
+
+.back-arrow {
+  background-color: #DBE2EF;
+}
+
+.back-arrow:hover {
+  background-color: white;
+}
