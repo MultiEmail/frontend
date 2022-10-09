@@ -1,6 +1,7 @@
 {
     // Comments are supported, like tsconfig.json
     "entryPoints": [
+		"src/*/**/*",
 		"src/componenets/**/*",
 		"src/hooks/**/*",
 		"src/pages/home/**/*",
