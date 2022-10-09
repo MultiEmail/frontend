@@ -10,6 +10,7 @@ const NotFound = () => {
             <button className="bg-[#5271ff] px-3 py-1 rounded-md text-white">
             <p className='py-2.5 px-2 font-light'>Back Home</p>
             </button>
+            
         </Link>
       </div>
     )
