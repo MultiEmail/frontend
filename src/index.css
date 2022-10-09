@@ -5,9 +5,17 @@
 .background {
   background-image: url('./assets/photos/background.svg');
   width: 100%;
-  height: 110%;
+  height: 100%;
   position: absolute;
   top: 0;
   z-index: -10;
   background-size: cover;
+}
+
+.back-arrow {
+  background-color: #DBE2EF;
+}
+
+.back-arrow:hover {
+  background-color: white;
 }
