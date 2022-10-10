@@ -206,7 +206,7 @@ const Signup: FC = () => {
 												<input
 													type={showPassword ? "text" : "password"}
 													id="password"
-													className={"outline-none w-[80%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.password ? " border-[#FF0000]" : " border-blue-600")}
+													className={"outline-none w-[90%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.password ? " border-[#FF0000]" : " border-blue-600")}
 														placeholder="Enter your password"
 														value={values.password}
 														onChange={handleChange}
@@ -230,7 +230,7 @@ const Signup: FC = () => {
 												<input
 													type={showConfirmPassword ? "text" : "password"}
 													id="cpassword"
-													className={"outline-none w-[80%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.cpassword ? " border-[#FF0000]" : " border-blue-600")}
+													className={"outline-none w-[90%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.cpassword ? " border-[#FF0000]" : " border-blue-600")}
 													placeholder="Confirm your password"
 													value={values.cpassword}
 													onChange={handleChange}
@@ -260,7 +260,7 @@ const Signup: FC = () => {
 													onChange={handleChange}
 													onBlur={handleBlur}
 												/>
-												<label className="flex mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="terms"> I agree to the <a href="#" className="underline px-1 text-[#3F72AF]">terms and conditions.</a> </label>
+												<label className="flex whitespace-nowrap flex-row mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="terms"> I agree to the <a href="#" className="flex underline px-1 text-[#3F72AF]">terms and conditions.</a> </label>
 											</div>
 											<div className="flex flex-row justify-start items-center mt-2">
 												<input
@@ -272,7 +272,7 @@ const Signup: FC = () => {
 													onChange={handleChange}
 													onBlur={handleBlur}
 												/>
-												<label className="flex mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="marketing">I allow Multi Mail to send me marketting email's.</label>
+												<label className="flex mx-2  text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="marketing">I allow Multi Mail to send me marketting email's.</label>
 											</div>
 										</div>
 										{/* submit button */}

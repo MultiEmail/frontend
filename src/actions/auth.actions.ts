@@ -87,7 +87,7 @@ export const verifyHandler = (payload: IVerificationPayload, token: String) => {
 		try {
 			const res = await API.get<APIResponse>(`/auth/verify/${payload.verificationCode}`, {
 				headers: {
-					"authorization": `Bearer ${token}`,
+					"Authorization": `Bearer ${token}`,
 				}
 			});
 			return Promise.resolve(res);

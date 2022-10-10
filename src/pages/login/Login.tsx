@@ -159,7 +159,7 @@ const Login: FC = () => {
 												<input
 													type={showPassword ? "text" : "password"}
 													id="password"
-													className={"outline-none w-[80%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.password ? " border-[#FF0000]" : " border-blue-600")}
+													className={"outline-none w-[90%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.password ? " border-[#FF0000]" : " border-blue-600")}
 														placeholder="Enter your password"
 														value={values.password}
 														onChange={handleChange}
