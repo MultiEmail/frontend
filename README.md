@@ -33,6 +33,16 @@ yarn dev
 git clone https://github.com/MultiEmail/MultiEmail-frontend.git && cd MultiEmail-frontend && yarn install && yarn dev
 ```
 
+# Docker
+
+For development server (http://localhost:3000)
+```bash
+git clone https://github.com/MultiEmail/MultiEmail-frontend.git
+cd MultiEmail-frontend
+docker compose --env-file ./.env
+```
+
+
 # Wanna join the team?
 
 - [Discord server](https://discord.gg/8kTdfWmuQa)

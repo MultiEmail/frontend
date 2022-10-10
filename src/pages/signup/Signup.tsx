@@ -13,7 +13,7 @@ import logo from "../../assets/logos/icon-transparent.svg";
 import {
 	AiOutlineArrowLeft,
 	AiFillEye,
-	AiFillEyeInvisible,
+	AiFillEyeInvisible
 } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
 import { AxiosError } from "axios";
