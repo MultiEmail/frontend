@@ -16,7 +16,7 @@ const Home: FC = () => {
 					<div className="flex flex-col justify-center items-center">
 						<div className="flex flex-col">
 							<h1 className="text-[15px] font-light text-[#859BFF]">Hey! This is</h1>
-							<h1 className="text-5xl font-semibold text-[#112D4E]">Multi Mail</h1>
+							<h1 className="text-5xl font-semibold text-[#112D4E]">Multi Email</h1>
 							<h1 className="text-[15px] pt-2 font-light">A simple and easy to use multiple</h1>
 							<h1 className="text-[15px] font-light">email client.</h1>
 							<div className="flex flex-row pt-4">

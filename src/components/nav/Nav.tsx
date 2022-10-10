@@ -27,7 +27,7 @@ const Nav: FC = () => {
             <div className='px-2 flex justify-between items-center w-full h-full'>
                 <div className='flex flex-row items-center'>
 					<img src={logo} alt="logo" className="w-[48px] h-[48px]" />
-                    <Link to="/" className={'text-2xl mr-4 md:text-4 font-semibold'}>Multi Mail</Link>
+                    <Link to="/" className={'text-xl mr-4 md:text-4 font-semibold'}>Multi Email</Link>
                 </div>
                 <ul className={"hidden md:flex" }>
                     <Link className={"flex p-2 m-3 duration-300 transition-border " + (currentRoute === "about" ? "border-t-2 border-[#5272ff60]" : null)} to="/about"><li>About</li></Link>
