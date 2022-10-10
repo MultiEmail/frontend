@@ -16,6 +16,7 @@ module.exports = {
 			roboto: ["Roboto", "sans-serif"],
 		},
 		fontWeights: {
+			light: 200,
 			normal: 400,
 			medium: 500,
 			bold: 700,

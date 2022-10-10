@@ -9,7 +9,7 @@ import logo from "../../assets/logos/icon-transparent.svg";
 import {
 	AiOutlineArrowLeft,
 	AiFillEye,
-	AiFillEyeInvisible,
+	AiFillEyeInvisible
 } from "react-icons/ai";
 import { ILoginPayload, loginHandler } from "../../actions/auth.actions";
 import useUpdateObjectState from "../../hooks/useUpdateObjectState";
@@ -62,7 +62,8 @@ const Login: FC = () => {
 	 * @constant
 	 * @author aayushchugh
 	 */
-	// const [formData, setFormData] = useState<ILoginPayload>({
+
+  // const [formData, setFormData] = useState<ILoginPayload>({
 	// 	email: "",
 	// 	password: "",
 	// });
@@ -81,7 +82,7 @@ const Login: FC = () => {
 	 * @author KanLSK
 	 */
 	const passwordVisibility = () => {
-		setShowPassword((prev) => !prev);
+		setShowPassword(prev => !prev);
 	};
 
 	// /**

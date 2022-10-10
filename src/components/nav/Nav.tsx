@@ -57,8 +57,7 @@ const Nav: FC = () => {
 					<Link to="/login" className="text-black px-4 py-2 rounded-md hover:bg-[#5272ff30] duration-200 mx-2 hover:text-black font-semibold text-center my-4">Log In</Link>
 				</div>
 			</div>
-
-        </div>
+      </div>
 	);
 };
 
