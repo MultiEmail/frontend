@@ -111,8 +111,8 @@ const Verification: FC = () => {
 		<AnimatePresence>
 			<motion.div className="flex font-poppins justify-center items-center h-screen w-screen no-select">
 				{
-					canRequestVerification ? <motion.div className="flex bg-[#DBE2EF] justify-center rounded-[10px] p-3 sm:w-[80%] w-fit lg:p-5 shadow-lg box-shadow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
-					<div className="flex flex-row lg:p-5 justify-start lg:justify-between items-center">
+					canRequestVerification ? <motion.div className="flex bg-[#DBE2EF] justify-center rounded-[10px] p-3 w-[80%] lg:p-5 shadow-lg box-shadow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
+					<div className="flex flex-row lg:p-5 justify-start w-[90%] lg:justify-between items-center">
 						<div className="hidden lg:flex w-[50%] justify-center">
 							{/* This will hold the vector */}
 							<img className="h-[70%] w-[70%]" src={verificationVector} alt="verification" />
@@ -126,7 +126,7 @@ const Verification: FC = () => {
 									<h1 className="text-xl place-self-center mx-2 text-[#112D4E]">Multi Email</h1>
 								</div>
 								<div className="flex flex-col text-center mt-5">
-									<h1 className="text-xl font-semibold text-[#3F72AF]">Authenticate Your Account</h1>
+									<h1 className="text-xl font-regular text-[#3F72AF]">Authenticate Your Account</h1>
 									<p className="text-sm m-3">
 										Please confirm your account by entering the verification code sent to your email address.
 									</p>
@@ -182,12 +182,12 @@ const Verification: FC = () => {
 					</div>
 				</motion.div>
 				: <motion.div className="flex flex-col justify-start" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
-					<div className="flex flex-col">
-							<div className='flex p-3 flex-row justify-center items-center lg:px-5 drop-shadow-xl shadow-lg rounded-sm'>
+					<div className="flex flex-col justify-center items-center">
+							<div className='flex p-3 flex-row justify-center items-center lg:px-5 drop-shadow-xl w-[80%] lg:w-fit shadow-lg rounded-sm'>
 								<div className='px-2'>
 									<HiOutlineKey className="h-[28px] w-[28px] text-[#ff5252]"/>
 								</div>
-								<h1 className='flex justify-center ml-2 items-center'>Where could the key be? Up there? Down Here?</h1>
+								<h1 className='flex justify-center ml-2 items-center text-center'>Where could the key be? Up there? Down Here?</h1>
 							</div>
 					</div>
 				</motion.div>
