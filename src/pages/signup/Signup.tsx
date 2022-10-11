@@ -1,17 +1,14 @@
-import { FC, FormEvent, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { FC, useState } from "react";
+import { Link } from "react-router-dom";
 import { ISignupPayload, signupHandler } from "../../actions/auth.actions";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import useUpdateObjectState from "../../hooks/useUpdateObjectState";
 import Tooltip from "../../components/tooltip/Tooltip";
 import * as yup from 'yup';
-import { useFormik, validateYupSchema } from "formik";
+import { useFormik } from "formik";
 //import photos
 import vector from "../../assets/photos/vector-signup.svg";
-import logo from "../../assets/logos/icon-transparent.svg";
 //import icons
 import {
-	AiOutlineArrowLeft,
 	AiFillEye,
 	AiFillEyeInvisible
 } from "react-icons/ai";
@@ -24,26 +21,16 @@ import { IAPIResponseError } from "../../utils/api.util";
  */
 const Signup: FC = () => {
 	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
 
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 	const [showConfirmPassword, setShowConfirmPassword] =
 		useState<boolean>(false);
-	const [pageLoaded, setPageLoaded] = useState<boolean>(false);
 	const [canShowTooltip, setCanShowTooltip] = useState<boolean>(false);
 	const [tooltipMessage, setTooltipMessage] = useState<string>("");
 	const [tooltipType, setTooltipType] = useState<"error" | "success">("success");
 
-	useEffect(() => {
-		if (!pageLoaded) {
 
-			validateForm();
-
-			setPageLoaded(true);
-		}
-	}, [pageLoaded]);
-
-	const { values, errors, touched, handleBlur, isSubmitting, handleSubmit, handleChange, resetForm, validateForm } = useFormik({
+	const { values, errors, handleBlur, isSubmitting, handleSubmit, handleChange, resetForm } = useFormik({
 		initialValues: {
 			username: "",
 			email: "",
@@ -260,13 +247,13 @@ const Signup: FC = () => {
 													onChange={handleChange}
 													onBlur={handleBlur}
 												/>
-												<label className="flex whitespace-nowrap flex-row mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="terms"> I agree to the <a href="#" className="flex underline px-1 text-[#3F72AF]">terms and conditions.</a> </label>
+												<label className="flex whitespace-nowrap flex-row mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="terms"> I agree to the <a href="/#" className="flex underline px-1 text-[#3F72AF]">terms and conditions.</a> </label>
 											</div>
 											<div className="flex flex-row justify-start items-center mt-2">
 												<input
 													type="checkbox"
 													id="marketting"
-													className={"flex outline-none w-[18px] h-[18px] border-2 text-[10px] border-[#3F72AF] rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.marketting ? " border-[#FF0000]" : " ")}
+													className={"flex outline-none w-[18px] h-[18px] border-2 text-[10px] border-[#3F72AF] rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E20] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.marketting ? " border-[#FF0000]" : " ")}
 													placeholder="Enter your password"
 													checked={values.marketting}
 													onChange={handleChange}
@@ -279,7 +266,7 @@ const Signup: FC = () => {
 										<div className="flex flex-col my-2">
 											<button
 												type="submit"
-												className={"bg-[#5271FF] text-white text-[15px] font-bold py-2 px-4 rounded-[10px] hover:bg-[#112D4E70] duration-300 transition-colors" + (isSubmitting ? " opacity-50 cursor-not-allowed" : "") + (Object.keys(errors).length > 0 ? " opacity-50 cursor-not-allowed" : "")}
+												className={"bg-[#5271FF] text-white text-[15px] font-bold py-2 px-4 rounded-[10px] hover:bg-[#112D4E20] duration-300 transition-colors" + (isSubmitting ? " opacity-50 cursor-not-allowed" : "") + (Object.keys(errors).length > 0 ? " opacity-50 cursor-not-allowed" : "")}
 												onClick={(e) => {
 													e.preventDefault();
 													handleSubmit();
@@ -290,7 +277,7 @@ const Signup: FC = () => {
 										</div>
 										{/* Already have an account */}
 										<div className="flex flex-col my-2">
-											<p className="text-[#112D4E] text-sm"> Already have an account? <Link to="/login"><a className="mx-1 text-[#5271FF] underline ">Login</a></Link> here. </p>
+											<p className="text-[#112D4E] text-sm flex flex-col whitespace-nowrap text-center"> Already have an account? <Link className="flex mx-1 justify-center text-[#5271FF] underline" to="/login">Login</Link></p>
 										</div>
 									</form>
 								</div>

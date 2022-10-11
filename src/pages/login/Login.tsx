@@ -1,9 +1,8 @@
-import { FC, FormEvent, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //import photos
 import vector from "../../assets/photos/vector-login.svg";
-import logo from "../../assets/logos/icon-transparent.svg";
 
 //import icons
 import {
@@ -12,7 +11,6 @@ import {
 	AiFillEyeInvisible
 } from "react-icons/ai";
 import { ILoginPayload, loginHandler } from "../../actions/auth.actions";
-import useUpdateObjectState from "../../hooks/useUpdateObjectState";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { AnimatePresence, motion } from "framer-motion";
 import Tooltip from "../../components/tooltip/Tooltip";
@@ -28,7 +26,6 @@ const Login: FC = () => {
 	const [canShowTooltip, setCanShowTooltip] = useState<boolean>(false);
 	const [tooltipMessage, setTooltipMessage] = useState<string>("");
 	const [tooltipType, setTooltipType] = useState<"error" | "success">("success");
-	const [pageLoaded, setPageLoaded] = useState<boolean>(false);
 
 
 	const onSubmit = async (values: ILoginPayload, actions: any) => {
@@ -47,7 +44,8 @@ const Login: FC = () => {
 		}
 		catch (e) {
 			const er = e as AxiosError<IAPIResponseError>;
-			setTooltipMessage("Something went wrong. Please try again later.");
+			const msg = er.response?.data.error ? er.response?.data.error : "Something went wrong! Please try again later.";
+			setTooltipMessage(msg);
 			setTooltipType("error");
 			setCanShowTooltip(true);
 			setTimeout(() => {
@@ -103,20 +101,13 @@ const Login: FC = () => {
 	// 	}
 	// };
 
-	useEffect(() => {
-		// This will run only once when the page is loaded.
-		if(!pageLoaded) {
-			validateForm();
-			setPageLoaded(true);
-		}
-	}, [pageLoaded]);
 
 	const loginSchema = Yup.object().shape({
 		email: Yup.string().email("Invalid email").required("Email is required"),
 		password: Yup.string().required("Password is required"),
 	});
 
-	const { values, errors, touched, handleBlur, isSubmitting, handleSubmit, handleChange, resetForm, validateForm } = useFormik({
+	const { values, errors, handleBlur, isSubmitting, handleSubmit, handleChange, resetForm } = useFormik({
         initialValues: {
 			email: "",
 			password: "",
@@ -167,7 +158,7 @@ const Login: FC = () => {
 														onBlur={handleBlur}
 													/>
 													<div
-														className="justify-center w-fit items-center text-black hover:bg-[#112D4E60] duration-300 transition-colors cursor-pointer p-2 rounded-full mx-2 mt-2"
+														className="justify-center w-fit items-center text-black hover:bg-[#112D4E20] duration-300 transition-colors cursor-pointer p-2 rounded-full mx-2 mt-2"
 														onClick={() => passwordVisibility()}
 													>
 														{showPassword ? (
@@ -182,7 +173,7 @@ const Login: FC = () => {
 										<div className="flex flex-col my-2">
 											<button
 												type="submit"
-												className={"bg-[#5271FF] text-white text-[15px] font-bold py-2 px-4 rounded-[10px] hover:bg-[#112D4E70] duration-300 transition-colors" + (isSubmitting ? " opacity-50 cursor-not-allowed" : "") + (Object.keys(errors).length > 0 ? " opacity-50 cursor-not-allowed" : "")}
+												className={"bg-[#5271FF] text-white text-[15px] font-bold py-2 mt-3 px-4 rounded-[10px] hover:bg-[#112D4E70] duration-300 transition-colors" + (isSubmitting ? " opacity-50 cursor-not-allowed" : "") + (Object.keys(errors).length > 0 ? " opacity-50 cursor-not-allowed" : "")}
 												onClick={(e) => {
 													e.preventDefault();
 													handleSubmit();
@@ -193,7 +184,7 @@ const Login: FC = () => {
 										</div>
 										{/* Already have an account */}
 										<div className="flex flex-col my-2">
-											<p className="text-[#112D4E] text-sm"> Dont have an account? <Link to="/signup"><a className="mx-1 text-[#5271FF] underline ">Signup</a></Link> here. </p>
+										<p className="text-[#112D4E] text-sm flex flex-col whitespace-nowrap text-center"> Don't have an account? <Link className="flex mx-1 justify-center text-[#5271FF] underline" to="/signup">Sign Up</Link></p>
 										</div>
 									</form>
 								</div>

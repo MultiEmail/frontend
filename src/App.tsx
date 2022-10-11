@@ -21,7 +21,7 @@ const App: FC = () => {
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<Signup />} />
 						<Route path="/verify" element={<Verification />} />
-            <Route path="/about" element={<About />} />
+            			<Route path="/about" element={<About />} />
 						<Route path="*" element={<NotFound />} />
 					</Route>
 				</Routes>
