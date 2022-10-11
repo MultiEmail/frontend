@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
 import { AiOutlineCheckCircle, AiOutlineCloseCircle, AiOutlineInfoCircle, AiOutlineWarning } from "react-icons/ai";
 
-const ToolTip: FC<ITooltipProps> = ({ message, type }) => {
+const Tooltip: FC<ITooltipProps> = ({ message, type }) => {
     const [tooltipMessage, setTooltipMessage] = useState<string>("You're not supposed to see this.");
     const [tooltipType, setTooltipType] = useState<"error" | "success" | "warning" | "info">("info");
 
@@ -42,4 +42,4 @@ interface ITooltipProps {
     type: "error" | "success" | "warning" | "info";
 }
 
-export default ToolTip;
+export default Tooltip;
