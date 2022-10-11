@@ -6,6 +6,8 @@ export interface ISignupPayload {
 	email: string;
 	password: string;
 	cpassword: string;
+	terms: boolean;
+	marketting: boolean;
 }
 
 /**
@@ -15,8 +17,19 @@ export interface ISignupPayload {
  * @author aayushchugh
  */
 export const signupHandler = (payload: ISignupPayload) => {
-	return () => {
-		return API.post<IAPIResponseSuccess>("/auth/signup", payload);
+	return async () => {
+
+		interface APIResponse extends IAPIResponseSuccess {
+			message: string;
+		}
+
+		try {
+			const response = await API.post<APIResponse>("/auth/signup", payload);
+			return Promise.resolve(response);
+		}
+		catch (error) {
+			return Promise.reject(error as AxiosError<IAPIResponseError>);
+		}
 	};
 };
 
@@ -53,3 +66,33 @@ export const loginHandler = (payload: ILoginPayload) => {
 		}
 	};
 };
+
+
+export interface IVerificationPayload {
+	verificationCode: Number;
+}
+
+/**
+ * This function will send request to `/auth/verify` route
+ * @param payload for post request
+ * @author is-it-ayush
+ */
+
+export const verifyHandler = (payload: IVerificationPayload, token: String) => {
+	return async () => {
+		interface APIResponse extends IAPIResponseSuccess {
+			message: string;
+		}
+
+		try {
+			const res = await API.get<APIResponse>(`/auth/verify/${payload.verificationCode}`, {
+				headers: {
+					"Authorization": `Bearer ${token}`,
+				}
+			});
+			return Promise.resolve(res);
+		} catch (err) {
+			return Promise.reject(err as AxiosError<IAPIResponseError>);
+		}
+	};
+}
