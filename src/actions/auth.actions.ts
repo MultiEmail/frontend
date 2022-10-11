@@ -34,7 +34,7 @@ export const signupHandler = (payload: ISignupPayload) => {
 };
 
 export interface ILoginPayload {
-	email: string;
+	emailOrUsername: string;
 	password: string;
 }
 
@@ -54,7 +54,21 @@ export const loginHandler = (payload: ILoginPayload) => {
 
 		try {
 			// make API request to `/auth/login` route
-			const res = await API.post<APIResponse>("/auth/login", payload);
+			interface MapToApiFields {
+				username?: string;
+				email?: string;
+				password: string;
+			}
+
+			const mapToApiFields: MapToApiFields = {
+				password: payload.password,
+			};
+			if (payload.emailOrUsername.includes("@")) {
+				mapToApiFields.email = payload.emailOrUsername;
+			} else {
+				mapToApiFields.username = payload.emailOrUsername;
+			}
+			const res = await API.post<APIResponse>("/auth/login", mapToApiFields);
 
 			// save access and refresh token to local storage
 			localStorage.setItem("access_token", res.data.access_token);

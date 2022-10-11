@@ -103,13 +103,24 @@ const Login: FC = () => {
 
 
 	const loginSchema = Yup.object().shape({
-		email: Yup.string().email("Invalid email").required("Email is required"),
+		emailOrUsername: Yup.string().test({
+			name: "emailOrUsername",
+			message: function({value}) {
+				return value.includes("@") ? "Invalid email" : "Invalid username";
+			},
+			test: function(value) {
+				if (value?.includes("@")) {
+					return Yup.string().email("Invalid email").required("Email is required").isValidSync(value);
+				}
+				return Yup.string().required("Username is required").isValidSync(value);
+			},
+		}),
 		password: Yup.string().required("Password is required"),
 	});
 
 	const { values, errors, handleBlur, isSubmitting, handleSubmit, handleChange, resetForm } = useFormik({
         initialValues: {
-			email: "",
+			emailOrUsername: "",
 			password: "",
         },
         validationSchema: loginSchema,
@@ -133,13 +144,13 @@ const Login: FC = () => {
 									<form className="flex flex-col">
 										{/* email */}
 										<div className="flex flex-col my-2">
-											<label className="text-[#112D4E] text-sm" htmlFor="email"> Email </label>
+											<label className="text-[#112D4E] text-sm" htmlFor="userOrUsername"> Email / Username </label>
 											<input
-												type="email"
-												id="email"
-												className={"outline-none border-2 text-[15px] border-white h-full rounded-[10px] p-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.email ? " border-[#FF0000]" : " border-blue-600")}
-												placeholder="Enter your email"
-												value={values.email}
+												type="text"
+												id="emailOrUsername"
+												className={"outline-none border-2 text-[15px] border-white h-full rounded-[10px] p-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.emailOrUsername ? " border-[#FF0000]" : " border-blue-600")}
+												placeholder="Enter your email/username"
+												value={values.emailOrUsername}
 												onChange={handleChange}
 												onBlur={handleBlur}
 											/>
