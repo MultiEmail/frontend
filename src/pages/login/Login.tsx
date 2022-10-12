@@ -37,7 +37,7 @@ const Login: FC = () => {
 			resetForm();
 			setTimeout(() => {
 				setCanShowTooltip(false);
-				
+
 				// Navigate to the dashboard.
 			}
 			, 5000);
@@ -51,7 +51,7 @@ const Login: FC = () => {
 			setTimeout(() => {
 				setCanShowTooltip(false);
 			}, 5000);
-		}		
+		}
 	};
 
 	/**
