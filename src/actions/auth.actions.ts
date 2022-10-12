@@ -18,16 +18,24 @@ export interface ISignupPayload {
  */
 export const signupHandler = (payload: ISignupPayload) => {
 	return async () => {
-
 		interface APIResponse extends IAPIResponseSuccess {
 			message: string;
 		}
 
 		try {
-			const response = await API.post<APIResponse>("/auth/signup", payload);
+			console.log("payload", payload);
+			const mapToApiFields = {
+				username: payload.username,
+				email: payload.email,
+				password: payload.password,
+				cpassword: payload.cpassword,
+				acceptedTermsAndConditions: payload.terms,
+				receiveMarketingEmails: payload.marketting,
+			};
+			const response = await API.post<APIResponse>("/auth/signup", mapToApiFields);
+			console.log(response);
 			return Promise.resolve(response);
-		}
-		catch (error) {
+		} catch (error) {
 			return Promise.reject(error as AxiosError<IAPIResponseError>);
 		}
 	};
@@ -81,7 +89,6 @@ export const loginHandler = (payload: ILoginPayload) => {
 	};
 };
 
-
 export interface IVerificationPayload {
 	verificationCode: Number;
 }
@@ -101,12 +108,12 @@ export const verifyHandler = (payload: IVerificationPayload, token: String) => {
 		try {
 			const res = await API.get<APIResponse>(`/auth/verify/${payload.verificationCode}`, {
 				headers: {
-					"Authorization": `Bearer ${token}`,
-				}
+					Authorization: `Bearer ${token}`,
+				},
 			});
 			return Promise.resolve(res);
 		} catch (err) {
 			return Promise.reject(err as AxiosError<IAPIResponseError>);
 		}
 	};
-}
+};
