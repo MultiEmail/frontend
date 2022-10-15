@@ -11,6 +11,8 @@ import { FC } from 'react';
 
 import About from './pages/about/About';
 
+import Mailbox from './pages/main/Mailbox';
+
 
 const App: FC = () => {
 	return (
@@ -24,6 +26,7 @@ const App: FC = () => {
 					<Route path="/verify" element={<Verification />} />
 					<Route path="/about" element={<About />} />
 					<Route path="*" element={<NotFound />} />
+					<Route path='/mailbox' element={<Mailbox /> }/>
 				</Routes>
 			</BrowserRouter>
 		</div>
