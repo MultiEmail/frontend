@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import img from '../../assets/logos/full-transparent.svg';
+import { FC } from "react";
+import img from "../../assets/logos/full-transparent.svg";
 
 const About: FC = () => {
 	return (
@@ -9,12 +9,11 @@ const About: FC = () => {
 					<div className="md:5/12 lg:w-5/12 flex flex-col items-center">
 						<img
 							src={img}
-							alt="image"
+							alt="background"
 							loading="lazy"
 							width=""
 							height=""
 						/>
-						
 					</div>
 					<div className="md:7/12 lg:w-6/12">
 						<h2 className="text-2xl text-[#112D4E] font-regular md:text-4xl">
@@ -30,7 +29,7 @@ const About: FC = () => {
 							communicate.
 						</p>
 						<p className="mt-4 text-[#3F72AF]">
-							{' '}
+							{" "}
 							Later on we will also make it a vscode extention, so
 							if you spent a lot of time in vscode that's the
 							extention you want.

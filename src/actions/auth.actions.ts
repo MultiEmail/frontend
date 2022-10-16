@@ -6,6 +6,8 @@ export interface ISignupPayload {
 	email: string;
 	password: string;
 	cpassword: string;
+	terms: boolean;
+	marketting: boolean;
 }
 
 /**
@@ -15,13 +17,32 @@ export interface ISignupPayload {
  * @author aayushchugh
  */
 export const signupHandler = (payload: ISignupPayload) => {
-	return () => {
-		return API.post<IAPIResponseSuccess>("/auth/signup", payload);
+	return async () => {
+		interface APIResponse extends IAPIResponseSuccess {
+			message: string;
+		}
+
+		try {
+			console.log("payload", payload);
+			const mapToApiFields = {
+				username: payload.username,
+				email: payload.email,
+				password: payload.password,
+				cpassword: payload.cpassword,
+				acceptedTermsAndConditions: payload.terms,
+				receiveMarketingEmails: payload.marketting,
+			};
+			const response = await API.post<APIResponse>("/auth/signup", mapToApiFields);
+			console.log(response);
+			return Promise.resolve(response);
+		} catch (error) {
+			return Promise.reject(error as AxiosError<IAPIResponseError>);
+		}
 	};
 };
 
 export interface ILoginPayload {
-	email: string;
+	emailOrUsername: string;
 	password: string;
 }
 
@@ -41,12 +62,55 @@ export const loginHandler = (payload: ILoginPayload) => {
 
 		try {
 			// make API request to `/auth/login` route
-			const res = await API.post<APIResponse>("/auth/login", payload);
+			interface MapToApiFields {
+				username?: string;
+				email?: string;
+				password: string;
+			}
+
+			const mapToApiFields: MapToApiFields = {
+				password: payload.password,
+			};
+			if (payload.emailOrUsername.includes("@")) {
+				mapToApiFields.email = payload.emailOrUsername;
+			} else {
+				mapToApiFields.username = payload.emailOrUsername;
+			}
+			const res = await API.post<APIResponse>("/auth/login", mapToApiFields);
 
 			// save access and refresh token to local storage
 			localStorage.setItem("access_token", res.data.access_token);
 			localStorage.setItem("refresh_token", res.data.refresh_token);
 
+			return Promise.resolve(res);
+		} catch (err) {
+			return Promise.reject(err as AxiosError<IAPIResponseError>);
+		}
+	};
+};
+
+export interface IVerificationPayload {
+	verificationCode: Number;
+}
+
+/**
+ * This function will send request to `/auth/verify` route
+ * @param payload for post request
+ * @author is-it-ayush
+ */
+
+export const verifyHandler = (payload: IVerificationPayload, token: String) => {
+	return async () => {
+		interface APIResponse extends IAPIResponseSuccess {
+			message: string;
+		}
+
+		try {
+			const res = await API.get<APIResponse>(`/auth/verify/${payload.verificationCode}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
 			return Promise.resolve(res);
 		} catch (err) {
 			return Promise.reject(err as AxiosError<IAPIResponseError>);
