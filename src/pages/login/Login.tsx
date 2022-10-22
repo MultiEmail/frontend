@@ -10,6 +10,7 @@ import {
 	AiFillEye,
 	AiFillEyeInvisible
 } from "react-icons/ai";
+import { IoIosHelpBuoy } from "react-icons/io";
 import { ILoginPayload, loginHandler } from "../../actions/auth.actions";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { AnimatePresence, motion } from "framer-motion";
@@ -22,7 +23,6 @@ import { useFormik } from "formik";
 const Login: FC = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-
 	const [canShowTooltip, setCanShowTooltip] = useState<boolean>(false);
 	const [tooltipMessage, setTooltipMessage] = useState<string>("");
 	const [tooltipType, setTooltipType] = useState<"error" | "success">("success");
@@ -116,6 +116,8 @@ const Login: FC = () => {
         onSubmit,
     })
 
+
+
 	return (
 		<AnimatePresence>
 			<motion.div className="flex flex-col font-poppins justify-center items-center h-screen w-screen no-select" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
@@ -126,7 +128,7 @@ const Login: FC = () => {
 							<img src={vector} alt="vector" className="flex w-[90%] h-[90%]"/>
 						</div>
 						<div className="hidden lg:flex h-[80%] place-self-center border-r-[3px] rounded-sm border-r-[#3F72AF] opacity-60"/>
-						<div className="flex flex-col lg:w-[50%] justify-center items-center lg:ml-10">
+						<div className="flex flex-col w-[50%] min-w-[300px] justify-center items-center lg:ml-10">
 							{/* logo */}
 							<div className="flex flex-col p-5 w-[90%]">
 								<div className="flex flex-col justify-center">
@@ -145,20 +147,20 @@ const Login: FC = () => {
 											/>
 										</div>
 										{/* password */}
-										<div className="flex flex-col my-2">
+										<div className="relative flex flex-col my-2">
 											<label className="text-[#112D4E] text-sm" htmlFor="password"> Password </label>
-											<div className="flex flex-row w-full justify-between items-center">
+											<div className="flex flex-row justify-between items-center">
 												<input
 													type={showPassword ? "text" : "password"}
 													id="password"
-													className={"outline-none w-[90%] border-2 text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.password ? " border-[#FF0000]" : " border-blue-600")}
+													className={"outline-none border-2 w-full text-[15px] border-white h-full rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.password ? " border-[#FF0000]" : " border-blue-600")}
 														placeholder="Enter your password"
 														value={values.password}
 														onChange={handleChange}
 														onBlur={handleBlur}
 													/>
 													<div
-														className="justify-center w-fit items-center text-black hover:bg-[#112D4E20] duration-300 transition-colors cursor-pointer p-2 rounded-full mx-2 mt-2"
+														className="absolute right-[1%] justify-center w-fit items-center text-black hover:bg-[#112D4E20] duration-300 transition-colors cursor-pointer p-2 rounded-full mx-2 mt-2"
 														onClick={() => passwordVisibility()}
 													>
 														{showPassword ? (
@@ -183,8 +185,16 @@ const Login: FC = () => {
 											</button>
 										</div>
 										{/* Already have an account */}
-										<div className="flex flex-col my-2">
-										<p className="text-[#112D4E] text-sm flex flex-col whitespace-nowrap text-center"> Don't have an account? <Link className="flex mx-1 justify-center text-[#5271FF] underline" to="/signup">Sign Up</Link></p>
+										<div className="flex flex-row my-2 justify-center">
+											<p className=" text-sm flex whitespace-nowrap items-center"> Need help?</p>
+											{/* <Link className="flex mx-1 justify-center text-[#5271FF] underline" to="/signup">Sign Up</Link> */}
+											<IoIosHelpBuoy className="text-[#5271FF] flex text-2xl mx-2 cursor-pointer hover:rotate-90 duration-300 transition-transform" onClick={
+												// Render the context menu on that spot
+												(e) => {
+													e.preventDefault();
+													navigate("/support");
+												}
+											}/>
 										</div>
 									</form>
 								</div>
@@ -210,3 +220,4 @@ const Login: FC = () => {
 };
 
 export default Login;
+

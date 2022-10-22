@@ -10,18 +10,24 @@ import NotFound from "./pages/not_found/Not_Found";
 import { FC } from "react";
 
 import About from './pages/about/about';
+import Support from './pages/support/Support';
+import PasswordResetRequest from './pages/password_reset/PasswordResetRequest';
+import PasswordResetReset from './pages/password_reset/PasswordRequestReset';
 
 const App: FC = () => {
 	return (
 		<div>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<NavLayout/>}>
+					<Route element={<NavLayout/>}>
 						<Route path="/" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<Signup />} />
 						<Route path="/verify" element={<Verification />} />
             			<Route path="/about" element={<About />} />
+						<Route path="/support" element={<Support />} />
+						<Route path='/support/password/request' element={<PasswordResetRequest />} />
+						<Route path='/support/password/reset' element={<PasswordResetReset />} />
 						<Route path="*" element={<NotFound />} />
 					</Route>
 				</Routes>
