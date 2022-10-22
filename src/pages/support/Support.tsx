@@ -40,7 +40,7 @@ const Support: FC = () => {
                         
                         <div className="flex flex-row justify-center items-center p-5 rounded-[5px] min-h-[130px] max-w-[350px] m-2 hover:bg-[#5272ff30] duration-500 cursor-pointer opacity-80 hover:opacity-100" onClick={
                             () => {
-                                navigate("/support/password/request");
+                                navigate("/support/password/reset");
                             }
                         }>
                             <div>

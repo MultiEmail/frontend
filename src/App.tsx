@@ -11,8 +11,7 @@ import { FC } from "react";
 
 import About from './pages/about/about';
 import Support from './pages/support/Support';
-import PasswordResetRequest from './pages/password_reset/PasswordResetRequest';
-import PasswordResetReset from './pages/password_reset/PasswordRequestReset';
+import PasswordReset from './pages/password_reset/PasswordReset';
 
 const App: FC = () => {
 	return (
@@ -26,8 +25,7 @@ const App: FC = () => {
 						<Route path="/verify" element={<Verification />} />
             			<Route path="/about" element={<About />} />
 						<Route path="/support" element={<Support />} />
-						<Route path='/support/password/request' element={<PasswordResetRequest />} />
-						<Route path='/support/password/reset' element={<PasswordResetReset />} />
+						<Route path='/support/password/reset' element={<PasswordReset />} />
 						<Route path="*" element={<NotFound />} />
 					</Route>
 				</Routes>
