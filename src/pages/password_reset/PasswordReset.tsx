@@ -121,7 +121,7 @@ const PasswordReset: FC = () => {
 		<AnimatePresence>
 			<motion.div className="flex font-poppins justify-center items-center h-screen w-screen no-select">
 				
-                <motion.div className="flex bg-[#DBE2EF] justify-center rounded-[10px] p-3 w-[90%] lg:p-5 shadow-lg box-shadow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
+                <motion.div className="flex bg-[#DBE2EF70] justify-center rounded-[10px] p-3 w-[90%] lg:p-5 shadow-lg box-shadow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
 					<div className="flex flex-row justify-center w-full">
                         <div className="hidden lg:flex w-[50%] justify-center items-center mx-10">
                             <MdPassword className="text-6xl text-[#0e2549]" />
