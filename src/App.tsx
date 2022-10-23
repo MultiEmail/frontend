@@ -18,7 +18,7 @@ const App: FC = () => {
 		<div>
 			<BrowserRouter>
 				<Routes>
-					<Route element={<NavLayout/>}>
+					<Route element={<NavLayout />}>
 						<Route path="/" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<Signup />} />

@@ -23,7 +23,7 @@ const Nav: FC = () => {
 
 
 	return (
-        <div className='absolute top-0 w-screen h-[60px] font-poppins backdrop-blur-lg'>
+        <div className='absolute top-0 w-screen h-[60px] font-poppins backdrop-blur-lg z-999'>
             <div className='px-2 flex justify-between items-center w-full h-full'>
                 <div className='flex flex-row items-center'>
 					<img src={logo} alt="logo" className="w-[48px] h-[48px]" />
