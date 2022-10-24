@@ -8,5 +8,6 @@
 	"prettier.arrowParens": "always",
 	"prettier.bracketSpacing": true,
 	"editor.insertSpaces": false,
-	"prettier.useTabs": true
+	"prettier.useTabs": true,
+	"dotenv.enableAutocloaking": false
 }
