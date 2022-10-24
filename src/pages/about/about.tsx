@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 //Icons 
 import { FiMail, FiGithub } from 'react-icons/fi';
@@ -11,10 +10,7 @@ import { MdDesignServices } from 'react-icons/md';
 
 const About: FC = () => {
 
-	const navigate = useNavigate();
 	const [allowRot, setAllowRot] = useState(false);
-
-	
 
 	const mail = [
 		'work@company.com',
