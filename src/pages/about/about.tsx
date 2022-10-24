@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import img from '../../assets/logos/full-transparent.png';
 
 //Icons 
 import { FiMail, FiGithub } from 'react-icons/fi';
