@@ -9,7 +9,7 @@ import NavLayout from "./components/nav/NavbarLayout";
 import NotFound from "./pages/not_found/Not_Found";
 import { FC } from "react";
 
-import About from './pages/about/About';
+import About from './pages/about/about';
 import Support from './pages/support/Support';
 import PasswordReset from './pages/password_reset/PasswordReset';
 
