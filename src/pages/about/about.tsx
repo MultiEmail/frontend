@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 
 //Icons 
 import { FiMail, FiGithub } from 'react-icons/fi';
-import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai';
+import { AiOutlineArrowDown } from 'react-icons/ai';
 import { CgSortAz } from 'react-icons/cg';
 import { BiTimeFive } from 'react-icons/bi';
 import { MdDesignServices } from 'react-icons/md';

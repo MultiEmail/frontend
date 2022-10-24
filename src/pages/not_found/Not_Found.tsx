@@ -1,7 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import not_found from '../../assets/photos/not_found.svg'
 import { motion } from 'framer-motion'
-import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 const NotFound = () => {
 

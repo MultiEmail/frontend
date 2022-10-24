@@ -9,9 +9,6 @@ import { IResetRequestPayload, IResetPasswordParams, resetRequestHandler, resetP
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { IAPIResponseError } from "../../utils/api.util";   
 
-import mmIcon from "../../assets/logos/icon-transparent.svg";
-import verificationVector from "../../assets/photos/vector-verify.svg";
-
 // Icons
 import { MdPassword } from "react-icons/md";
 import { IoIosHelpBuoy } from "react-icons/io";

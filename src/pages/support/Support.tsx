@@ -17,10 +17,10 @@ const Support: FC = () => {
     useEffect(() => {
       if(pageLoad) {
 
-        // Run Once; Fetch Discord Link from .env (TOOD: Write a handler later)
+        // Run Once; Fetch Discord Link from .env (TOOD: Write a handler later)  [TODO: Provide them in the config]
         const discordLink = process.env.REACT_APP_DISCORD_LINK || "https://discord.gg/GtSftczQX5";
         const documentationLink = process.env.REACT_APP_MULTIEMAIL_DOCS_LINK || "https://docs.multiemail.us";
-        const passwordRequsetLink = process.env.REACT_APP_PASSWORD_RESET_LINK || "https://multiemail.us/password-reset/request";
+
         setExternals({
             ...externals,
             discord: discordLink,
