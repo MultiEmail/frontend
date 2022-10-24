@@ -36,19 +36,20 @@ const Signup: FC = () => {
 			email: "",
 			password: "",
 			cpassword: "",
-			terms: false,
-			marketting: false
+			acceptedTermsAndConditions: false,
+			receiveMarketingEmails: false
 		},
 		validationSchema: yup.object().shape({
 			username: yup.string().required("Username is required").min(3, "Username must be at least 3 characters long").max(20, "Username must be at most 20 characters long").lowercase("Username must be lowercase"),
 			email: yup.string().email().required(),
 			password: yup.string().min(8).required(),
 			cpassword: yup.string().oneOf([yup.ref("password")], "Passwords must match").required(),
-			terms: yup.boolean().oneOf([true], "You must accept the terms and conditions").required(),
-			marketting: yup.boolean().oneOf([true, false]).required()
+			acceptedTermsAndConditions: yup.boolean().oneOf([true], "You must accept the acceptedTermsAndConditions and conditions").required(),
+			receiveMarketingEmails: yup.boolean().oneOf([true, false]).required()
 		}),
 		onSubmit: async (values: ISignupPayload) => {
 			try {
+				console.log(values);
 				await dispatch(signupHandler(values));
 				setTooltipMessage("Your account has been created successfully. Check your email for verification link.");
 				setTooltipType("success");
@@ -83,8 +84,8 @@ const Signup: FC = () => {
 	// 	email: "",
 	// 	password: "",
 	// 	cpassword: "",
-	// 	terms: false,
-	// 	marketting: false,
+	// 	acceptedTermsAndConditions: false,
+	// 	receiveMarketingEmails: false,
 	// });
 
 	// const [error, setError] = useState<string>("");
@@ -235,27 +236,25 @@ const Signup: FC = () => {
 												</div>
 											</div>
 										</div>
-										{/* Terms Conditions and Markettings Opt In */}
+										{/* acceptedTermsAndConditions Conditions and Markettings Opt In */}
 										<div className="flex flex-col my-3">
 											<div className="flex flex-row justify-start items-center">
 												<input
 													type="checkbox"
-													id="terms"
-													className={"flex outline-none w-[18px] h-[18px] border-2 text-[10px] border-[#3F72AF] rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.terms ? " border-[#FF0000]" : " ")}
-													placeholder="Enter your password"
-													checked={values.terms}
+													id="acceptedTermsAndConditions"
+													className={"flex outline-none w-[18px] h-[18px] border-2 text-[10px] border-[#3F72AF] rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E70] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.acceptedTermsAndConditions ? " border-[#FF0000]" : " ")}
+													checked={values.acceptedTermsAndConditions}
 													onChange={handleChange}
 													onBlur={handleBlur}
 												/>
-												<label className="flex whitespace-nowrap flex-row mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="terms"> I agree to the <a href="/#" className="flex underline px-1 text-[#3F72AF]">terms and conditions.</a> </label>
+												<label className="flex whitespace-nowrap flex-row mx-2 text-[#112D4E] text-[12px] items-center justify-center mt-2" htmlFor="acceptedTermsAndConditions"> I agree to the <a href="/#" className="flex underline px-1 text-[#3F72AF]">terms and conditions.</a> </label>
 											</div>
 											<div className="flex flex-row justify-start items-center mt-2">
 												<input
 													type="checkbox"
-													id="marketting"
-													className={"flex outline-none w-[18px] h-[18px] border-2 text-[10px] border-[#3F72AF] rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E20] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.marketting ? " border-[#FF0000]" : " ")}
-													placeholder="Enter your password"
-													checked={values.marketting}
+													id="receiveMarketingEmails"
+													className={"flex outline-none w-[18px] h-[18px] border-2 text-[10px] border-[#3F72AF] rounded-[10px] p-1 px-2 mt-2 focus:border-[#112D4E20] transition-colors duration-300 placeholder-[#112D4E60]" + (errors.receiveMarketingEmails ? " border-[#FF0000]" : " ")}
+													checked={values.receiveMarketingEmails}
 													onChange={handleChange}
 													onBlur={handleBlur}
 												/>

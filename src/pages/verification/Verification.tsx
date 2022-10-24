@@ -1,16 +1,15 @@
 import * as yup from 'yup';
 import { FC, useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import * as queryString from 'query-string';
 import mmIcon from "../../assets/logos/icon-transparent.svg";
 import verificationVector from "../../assets/photos/vector-verify.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import Tooltip from '../../components/tooltip/Tooltip';
+import NotFound from '../not_found/Not_Found';
 
 // Icons
-import { HiOutlineKey } from "react-icons/hi";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IVerificationPayload, verifyHandler } from '../../actions/auth.actions';
 import { AxiosError } from 'axios';
 import { IAPIResponseError } from '../../utils/api.util';
@@ -27,7 +26,6 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 const Verification: FC = () => {
 
 	// Convert them all into redux state.
-	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const location = useLocation();
 
@@ -37,7 +35,8 @@ const Verification: FC = () => {
 
 	const [token, setToken] = useState<string>("");
 	const [canRequestVerification, setCanRequestVerification] = useState<boolean>(false);
-	const [isAMinuteOver, setIsAMinuteOver] = useState<boolean>(true);
+	
+
 
 	const [canShowTooltip, setCanShowTooltip] = useState<boolean>(false);
 	const [tooltipMessage, setTooltipMessage] = useState<string>("");
@@ -88,11 +87,6 @@ const Verification: FC = () => {
 		}
 	}, [pageLoaded]);
 
-	const onResend = () => {
-		// Request for a new verification code on user's Email. 
-		// This is only accessible if the user's verification status is false (retrieved after the jwt verification request).
-		alert("It isn't implemnted yet.");
-	};
 
 	const verificationSchema = yup.object().shape({
 		verificationCode: yup.number().required("Verification code is required").min(1000, "Verification code must be 4 digits").max(9999, "Verification code must be 4 digits"),
@@ -111,7 +105,7 @@ const Verification: FC = () => {
 		<AnimatePresence>
 			<motion.div className="flex font-poppins justify-center items-center h-screen w-screen no-select">
 				{
-					canRequestVerification ? <motion.div className="flex bg-[#DBE2EF] justify-center rounded-[10px] p-3 w-[80%] lg:p-5 shadow-lg box-shadow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
+					canRequestVerification ? <motion.div className="flex bg-[#DBE2EF70] justify-center rounded-[10px] p-3 w-[80%] lg:p-5 hadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
 					<div className="flex flex-row lg:p-5 justify-start w-[90%] lg:justify-between items-center">
 						<div className="hidden lg:flex w-[50%] justify-center">
 							{/* This will hold the vector */}
@@ -171,26 +165,12 @@ const Verification: FC = () => {
 									<p className="mt-3 mx-3 text-center">
 										It may take a minute to receive your code. 
 									</p>
-									{/* Display it after a minute. */}
-									<div className={"flex flex-col lg:flex-row justify-center items-center mx-3" + (isAMinuteOver ? "flex" : "hidden")}>
-										<h1 className='text-center mx-1'>Haven’t received it yet?</h1> 
-										<button className='flex underline italic' onClick={onResend}>Request a new code</button>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</motion.div>
-				: <motion.div className="flex flex-col justify-start" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{duration: 0.5,}}>
-					<div className="flex flex-col justify-center items-center">
-							<div className='flex p-3 flex-row justify-center items-center lg:px-5 drop-shadow-xl w-[80%] lg:w-fit shadow-lg rounded-sm'>
-								<div className='px-2'>
-									<HiOutlineKey className="h-[28px] w-[28px] text-[#ff5252]"/>
-								</div>
-								<h1 className='flex justify-center ml-2 items-center text-center'>Where could the key be? Up there? Down Here?</h1>
-							</div>
-					</div>
-				</motion.div>
+				: <NotFound />
 				}
 				<AnimatePresence>
 					{

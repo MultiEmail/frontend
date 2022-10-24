@@ -6,8 +6,8 @@ export interface ISignupPayload {
 	email: string;
 	password: string;
 	cpassword: string;
-	terms: boolean;
-	marketting: boolean;
+	acceptedTermsAndConditions: boolean;
+	receiveMarketingEmails: boolean;
 }
 
 /**
@@ -29,8 +29,8 @@ export const signupHandler = (payload: ISignupPayload) => {
 				email: payload.email,
 				password: payload.password,
 				cpassword: payload.cpassword,
-				acceptedTermsAndConditions: payload.terms,
-				receiveMarketingEmails: payload.marketting,
+				acceptedTermsAndConditions: payload.acceptedTermsAndConditions,
+				receiveMarketingEmails: payload.receiveMarketingEmails,
 			};
 			const response = await API.post<APIResponse>("/auth/signup", mapToApiFields);
 			console.log(response);
@@ -108,12 +108,70 @@ export const verifyHandler = (payload: IVerificationPayload, token: String) => {
 		try {
 			const res = await API.get<APIResponse>(`/auth/verify/${payload.verificationCode}`, {
 				headers: {
-					Authorization: `Bearer ${token}`,
-				},
+					"Authorization": `Bearer ${token}`,
+				}
 			});
 			return Promise.resolve(res);
 		} catch (err) {
 			return Promise.reject(err as AxiosError<IAPIResponseError>);
 		}
 	};
-};
+}
+
+
+/**
+ * This function will send request to `/auth/forgotpassword` route
+ * @param payload for post request
+ * @author is-it-ayush
+ */
+
+export interface IResetRequestPayload {
+	email: string;
+}
+
+export const resetRequestHandler = (payload: IResetRequestPayload) => {
+	return async () => {
+		interface APIResponse extends IAPIResponseSuccess {
+			message: string;
+		}
+
+		try {
+			const res = await API.post<APIResponse>("/auth/forgotpassword", payload);
+			return Promise.resolve(res);
+		} catch (err) {
+			return Promise.reject(err as AxiosError<IAPIResponseError>);
+		}
+	};
+}
+
+
+/**
+ * This function will send request to `/auth/resetpassword/:email/:passwordResetCode` route
+ * @param payload for patch request
+ * @author is-it-ayush
+ * @todo Reconfigure the route to use a JWT token instead of email and passwordResetCode
+ */
+
+
+export interface IResetPasswordParams {
+	payload: {
+		password: string;
+		cpassword: string;
+	};
+	passwordResetCode: number;
+}
+
+export const resetPasswordHandler = (data: IResetPasswordParams, request: IResetRequestPayload) => {
+	return async () => {
+		interface APIResponse extends IAPIResponseSuccess {
+			message: string;
+		}
+
+		try {
+			const res = await API.patch<APIResponse>(`/auth/resetpassword/${request.email}/${data.passwordResetCode}`, data.payload);
+			return Promise.resolve(res);
+		} catch (err) {
+			return Promise.reject(err as AxiosError<IAPIResponseError>);
+		}
+	};
+}

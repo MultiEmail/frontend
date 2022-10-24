@@ -8,10 +8,12 @@ import Signup from "./pages/signup/Signup";
 import Verification from "./pages/verification/Verification";
 import NavLayout from "./components/nav/NavbarLayout";
 import NotFound from "./pages/not_found/Not_Found";
-import About from './pages/about/about';
-import Mailbox from './pages/main/Mailbox';
 
 import { FC } from "react";
+
+import About from './pages/about/about';
+import Support from './pages/support/Support';
+import PasswordReset from './pages/password_reset/PasswordReset';
 
 const App: FC = () => {
 	return (
@@ -23,10 +25,10 @@ const App: FC = () => {
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<Signup />} />
 						<Route path="/verify" element={<Verification />} />
-						<Route path="/about" element={<About />} />
+            			<Route path="/about" element={<About />} />
+						<Route path="/support" element={<Support />} />
+						<Route path='/support/password/reset' element={<PasswordReset />} />
 						<Route path="*" element={<NotFound />} />
-            {/** Todo: Add this as a Nested Component with the root element being a Protected Route Component. */}
-            <Route path='/mailbox' element={<Mailbox /> }/>
 					</Route>
 				</Routes>
 			</BrowserRouter>
