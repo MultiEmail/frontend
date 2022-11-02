@@ -4,7 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@formkit/auto-animate": "1.0.0-beta.3",
-		"@heroicons/react": "2.0.12",
+		"@heroicons/react": "2.0.13",
 		"@reduxjs/toolkit": "1.8.6",
 		"axios": "1.1.3",
 		"formik": "2.2.9",
