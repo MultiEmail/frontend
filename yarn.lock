@@ -8091,10 +8091,10 @@ qs@6.10.3:
   dependencies:
     side-channel "^1.0.4"
 
-query-string@8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-8.0.0.tgz#6fe8b0efcfea80dabe470f64a2e46eaf8beae357"
-  integrity sha512-mB9U/uR7+1ZTzHMMlkk06qH74bKeNkZXzZXxLpoOfypAR9AVhVcYhvOnFtiosoS6Mf7rNwsLhnzeefgZMgCE/A==
+query-string@8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-8.0.2.tgz#500007fca8d244478a1e264e5bdd561c34055c18"
+  integrity sha512-clIYj8NRVQzKAfyESeANUl+YHHVsl+QzGta8ndvqeGaJK/2RMDHiEI7iuu3erIWVdK27aePhuXUHCVojWT+Tjw==
   dependencies:
     decode-uri-component "^0.2.2"
     filter-obj "^5.1.0"
