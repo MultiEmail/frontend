@@ -5029,10 +5029,10 @@ fraction.js@^4.2.0:
   resolved "https://registry.npmjs.org/fraction.js/-/fraction.js-4.2.0.tgz"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
-framer-motion@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-8.1.0.tgz#8bbf26814de92af78eeae322318cfd4c252c4fa0"
-  integrity sha512-YLM4dDBuNyhZbgjK1qoqRX3cR2AgIP/G0An6wHTF222vo1CWItpKfNnSUiqE//6EJkrMRe2JuLIm10vPZY+FyQ==
+framer-motion@8.1.3:
+  version "8.1.3"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-8.1.3.tgz#eb729e3a725e3b39525dd45ae62caf0c09f276aa"
+  integrity sha512-pvlAEwjl4W6EMRp0rvWABCk+YyrlnPMXYzgyhkLSnBq9TdACFNeJBql7E40pMS0ttaWMKfwmH1A/raFCtcMf/A==
   dependencies:
     "@motionone/dom" "^10.15.3"
     hey-listen "^1.0.8"
