@@ -61,6 +61,6 @@
 		"commitlint": "17.4.4",
 		"husky": "8.0.3",
 		"react-scripts": "5.0.1",
-		"tailwindcss": "3.2.7"
+		"tailwindcss": "3.3.1"
 	}
 }
