@@ -1388,10 +1388,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@formkit/auto-animate@1.0.0-beta.6":
-  version "1.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@formkit/auto-animate/-/auto-animate-1.0.0-beta.6.tgz#ed7f8bc47d774a7764756646e9e3432e8be51cb3"
-  integrity sha512-PVDhLAlr+B4Xb7e+1wozBUWmXa6BFU8xUPR/W/E+TsQhPS1qkAdAsJ25keEnFrcePSnXHrOsh3tiFbEToOzV9w==
+"@formkit/auto-animate@1.0.0-pre-alpha.3":
+  version "1.0.0-pre-alpha.3"
+  resolved "https://registry.yarnpkg.com/@formkit/auto-animate/-/auto-animate-1.0.0-pre-alpha.3.tgz#8e6143a6232700e5be31f74fc6faffde05ce4e24"
+  integrity sha512-lMVZ3LFUIu0RIxCEwmV8nUUJQ46M2bv2NDU3hrhZivViuR1EheC8Mj5sx/ACqK5QLK8XB8z7GDIZBUGdU/9OZQ==
 
 "@heroicons/react@2.0.17":
   version "2.0.17"
